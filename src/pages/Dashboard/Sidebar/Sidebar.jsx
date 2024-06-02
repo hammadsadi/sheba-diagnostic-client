@@ -97,7 +97,7 @@ const Sidebar = () => {
               />
               <MenuItem
                 label="Test Results"
-                targetLink="/test-results"
+                targetLink="/dashboard/test-results"
                 icon={SiTestcafe}
               />
             </nav>

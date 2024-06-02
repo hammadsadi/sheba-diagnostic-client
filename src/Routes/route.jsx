@@ -6,6 +6,8 @@ import Login from "../pages/Auth/Auth/Login";
 import DashboardMain from "../Layouts/DashboardMain";
 import PrivateRoute from "./PrivateRoute";
 import UpCommingAppointments from "../pages/Dashboard/UpCommingAppointments/UpCommingAppointments";
+import TestResult from "../pages/Dashboard/TestResult/TestResult";
+import Profile from "../pages/Dashboard/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "upcoming-appointments",
         element: <UpCommingAppointments />,
+      },
+      {
+        path: "test-results",
+        element: <TestResult />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },
