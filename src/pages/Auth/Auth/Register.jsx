@@ -252,6 +252,7 @@ const Register = () => {
             <div>
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300 flex items-center justify-center"
               >
                 {loading ? <AnimatedSpin /> : "Sign Up"}
