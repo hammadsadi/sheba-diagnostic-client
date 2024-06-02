@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import uploadPhotoToCloud from "../../../utils/uploadImageToCLoud";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAuth from "../../../hooks/useAuth";
+import toastAlert from "../../../utils/toastAlert";
+import AnimatedSpin from "../../../components/AnimatedSpin/AnimatedSpin";
 const Register = () => {
+  const axiosCommon = useAxiosCommon();
+  const navigate = useNavigate();
+  const { createUser, loading, setLoading, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const [districtList, setDistrictsList] = useState([]);
@@ -27,6 +33,10 @@ const Register = () => {
   // Handle Register Form
   const onSubmit = async (data) => {
     try {
+      // Validation
+      if (data.password !== data.confirmPassword)
+        return toastAlert("Confirm Password Not Match", "error");
+      setLoading(true);
       const imgLink = await uploadPhotoToCloud(data.photo[0]);
       const userData = {
         name: data?.name,
@@ -35,15 +45,26 @@ const Register = () => {
         blood: data?.blood,
         district: data?.district,
         upazila: data?.upazila,
-        password: data?.password,
+        status: "active",
       };
-      console.log(userData);
+      // Create User
+      createUser(data.email, data.password)
+        .then(async (res) => {
+          const response = await axiosCommon.post("/user", userData);
+          if (response.data.insertedId) {
+            await updateUserProfile(data?.name, imgLink.data.display_url);
+            toastAlert("User Created Successful", "success");
+            setLoading(false);
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          toastAlert(err.message, "error");
+          setLoading(false);
+        });
     } catch (error) {
       console.log(error.message);
     }
-
-    const imgLink = await uploadPhotoToCloud(data.photo[0]);
-    console.log(imgLink.data.display_url);
   };
 
   return (
@@ -231,9 +252,9 @@ const Register = () => {
             <div>
               <button
                 type="submit"
-                className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300"
+                className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300 flex items-center justify-center"
               >
-                Sign Up
+                {loading ? <AnimatedSpin /> : "Sign Up"}
               </button>
             </div>
           </div>
