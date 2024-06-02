@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import UpCommingAppointments from "../pages/Dashboard/UpCommingAppointments/UpCommingAppointments";
 import TestResult from "../pages/Dashboard/TestResult/TestResult";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import AllTest from "../pages/AllTest/AllTest";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <Register />,
+      },
+      {
+        path: "/all-tests",
+        element: <AllTest />,
       },
       {
         path: "/login",

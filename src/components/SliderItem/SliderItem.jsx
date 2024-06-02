@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const SliderItem = ({ item }) => {
   const { title, desc, couponCode, discount, image } = item;
   return (
@@ -38,12 +39,12 @@ const SliderItem = ({ item }) => {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4 text-center">
-            <a
-              href="#"
+            <Link
+              to="/all-tests"
               className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-primary-opacity focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </div>
