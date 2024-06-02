@@ -3,6 +3,7 @@ import Main from "../Layouts/Main";
 import Home from "../pages/Home/Home/Home";
 import Register from "../pages/Auth/Auth/Register";
 import Login from "../pages/Auth/Auth/Login";
+import DashboardMain from "../Layouts/DashboardMain";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
         element: <Login />,
       },
     ],
+  },
+  // Dashboard
+  {
+    path: "/dashboard",
+    element: <DashboardMain />,
   },
 ]);
 
