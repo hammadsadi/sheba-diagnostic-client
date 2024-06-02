@@ -4,6 +4,8 @@ import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { MdHomeWork } from "react-icons/md";
 import { BsGraphUp } from "react-icons/bs";
+import { FaCalendarPlus } from "react-icons/fa6";
+import { SiTestcafe } from "react-icons/si";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
@@ -88,6 +90,16 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">Statistics</span>
               </NavLink>
               <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
+              <MenuItem
+                label="Upcoming Appointments"
+                targetLink="/dashboard/upcoming-appointments"
+                icon={FaCalendarPlus}
+              />
+              <MenuItem
+                label="Test Results"
+                targetLink="/test-results"
+                icon={SiTestcafe}
+              />
             </nav>
           </div>
         </div>
@@ -98,7 +110,7 @@ const Sidebar = () => {
           {/* Profile Menu */}
 
           <MenuItem
-            label="Profile"
+            label="My Profile"
             targetLink="/dashboard/profile"
             icon={FcSettings}
           />

@@ -5,6 +5,7 @@ import Register from "../pages/Auth/Auth/Register";
 import Login from "../pages/Auth/Auth/Login";
 import DashboardMain from "../Layouts/DashboardMain";
 import PrivateRoute from "./PrivateRoute";
+import UpCommingAppointments from "../pages/Dashboard/UpCommingAppointments/UpCommingAppointments";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,12 @@ const router = createBrowserRouter([
         <DashboardMain />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "upcoming-appointments",
+        element: <UpCommingAppointments />,
+      },
+    ],
   },
 ]);
 
