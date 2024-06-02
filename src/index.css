@@ -5,3 +5,7 @@
 body {
   background-color: #f5f9fc;
 }
+
+.swiper-pagination-bullet-active {
+  background: #32c1ce !important;
+}

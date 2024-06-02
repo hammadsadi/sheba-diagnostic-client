@@ -10,6 +10,11 @@ const Nav = () => {
           Home
         </Link>
       </li>
+      <li>
+        <Link to="/all-tests" className="text-sm md:text-base font-normal">
+          All Tests
+        </Link>
+      </li>
     </>
   );
   return (
