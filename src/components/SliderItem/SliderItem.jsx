@@ -9,8 +9,6 @@ const SliderItem = ({ item }) => {
         backgroundImage: `url(${image})`,
       }}
     >
-      {/* <div className="absolute  bg-white/75 z-20 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div> */}
-
       <div className="absolute  bg-gradient-to-r from-white/90 to-white/5 top-0 left-0 w-full h-[calc(100vh-72px)]"></div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">

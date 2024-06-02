@@ -1,9 +1,10 @@
-import useAuth from "../../../hooks/useAuth";
+// import useAuth from "../../../hooks/useAuth";
 import BannerSlider from "../BannerSlider/BannerSlider";
 import FeaturesTest from "../FeaturesTest/FeaturesTest";
+import PromotionBanner from "../PromotionBanner/PromotionBanner";
 
 const Home = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   return (
     <div>
@@ -11,6 +12,8 @@ const Home = () => {
       <BannerSlider />
       {/* Features Test */}
       <FeaturesTest />
+      {/* Promotion Banner */}
+      <PromotionBanner />
     </div>
   );
 };
