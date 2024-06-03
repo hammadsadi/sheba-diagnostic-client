@@ -30,7 +30,7 @@ const TestItem = () => {
         </p>
         <div>
           <Link
-            href="#"
+            to="/test-details/98"
             className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary"
           >
             Find out more

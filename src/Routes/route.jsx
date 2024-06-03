@@ -9,6 +9,7 @@ import UpCommingAppointments from "../pages/Dashboard/UpCommingAppointments/UpCo
 import TestResult from "../pages/Dashboard/TestResult/TestResult";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import AllTest from "../pages/AllTest/AllTest/AllTest";
+import TestDetails from "../pages/TestDetails/TestDetails";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/all-tests",
         element: <AllTest />,
+      },
+      {
+        path: "/test-details/:id",
+        element: <TestDetails />,
       },
       {
         path: "/login",
