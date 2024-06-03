@@ -1,6 +1,5 @@
 import { MdOutlineDownload } from "react-icons/md";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-import { GoDotFill } from "react-icons/go";
 import { MdBlockFlipped } from "react-icons/md";
 import MyModal from "../../../../components/MyModal/MyModal";
 import { useState } from "react";
@@ -20,7 +19,7 @@ const AllUsers = () => {
   return (
     <div>
       <div className="mt-3 md:mt-6">
-        <SectionTitle heading="My Upcoming Appointments" />
+        <SectionTitle heading="All Users List" />
       </div>
       <div className="overflow-x-auto">
         <table className="table">
@@ -77,7 +76,7 @@ const AllUsers = () => {
           </tbody>
         </table>
         {/* My Modal */}
-        <MyModal isOpen={isOpen} close={close}>
+        <MyModal isOpen={isOpen} close={close} modalTitle="User Info">
           <UserDetails />
         </MyModal>
       </div>

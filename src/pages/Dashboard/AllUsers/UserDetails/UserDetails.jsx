@@ -1,5 +1,3 @@
-import React from "react";
-
 const UserDetails = () => {
   return (
     <article className="rounded-xl  p-4">

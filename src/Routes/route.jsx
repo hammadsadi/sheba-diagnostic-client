@@ -11,6 +11,7 @@ import Profile from "../pages/Dashboard/Profile/Profile";
 import AllTest from "../pages/AllTest/AllTest/AllTest";
 import TestDetails from "../pages/TestDetails/TestDetails";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers/AllUsers";
+import AddTest from "../pages/Dashboard/AddTest/AddTest.jsx/AddTest";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "add-test",
+        element: <AddTest />,
       },
       {
         path: "upcoming-appointments",

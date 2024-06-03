@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import MenuItem from "../../../components/MenuItem/MenuItem";
 import toastAlert from "../../../utils/toastAlert";
 import { FaUserGroup } from "react-icons/fa6";
+import { GrDocumentTest } from "react-icons/gr";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -95,6 +96,11 @@ const Sidebar = () => {
                 label="All Users"
                 targetLink="/dashboard/all-users"
                 icon={FaUserGroup}
+              />
+              <MenuItem
+                label="Add Test"
+                targetLink="/dashboard/add-test"
+                icon={GrDocumentTest}
               />
               <MenuItem
                 label="Upcoming Appointments"

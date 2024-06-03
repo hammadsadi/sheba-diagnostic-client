@@ -1,13 +1,12 @@
 import {
-  Button,
   Dialog,
   DialogPanel,
   DialogTitle,
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-
-export default function MyModal({ isOpen, children, close }) {
+import PropTypes from "prop-types";
+export default function MyModal({ isOpen, children, close, modalTitle }) {
   return (
     <>
       {/* <Button
@@ -39,7 +38,7 @@ export default function MyModal({ isOpen, children, close }) {
                     as="h3"
                     className="text-2xl text-gray-900 text-center font-semibold mb-2"
                   >
-                    Payment successful
+                    {modalTitle}
                   </DialogTitle>
                   {children}
                   <div className="mt-4">
@@ -59,3 +58,10 @@ export default function MyModal({ isOpen, children, close }) {
     </>
   );
 }
+
+MyModal.propTypes = {
+  isOpen: PropTypes.bool,
+  close: PropTypes.bool,
+  children: PropTypes.element,
+  modalTitle: PropTypes.string,
+};
