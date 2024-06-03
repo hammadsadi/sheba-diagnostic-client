@@ -27,9 +27,10 @@ const UpCommingAppointments = () => {
               <td>Quality Control Specialist</td>
               <td>Blue</td>
               <td>
-                <button className="cursor-pointer">
+                <button className="cursor-pointer flex items-center">
                   {" "}
                   <MdCancel className="text-red-600 text-lg " />{" "}
+                  <span>Cancel</span>
                 </button>
               </td>
             </tr>
