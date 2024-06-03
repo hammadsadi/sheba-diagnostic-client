@@ -2,7 +2,7 @@ const PromotionBanner = () => {
   return (
     <div>
       <section
-        className={`relative md:h-96 h-40  bg-cover bg-center bg-no-repeat`}
+        className={`relative md:h-96 h-40  bg-cover bg-center bg-no-repeat mt-10 md:mt-20`}
         style={{
           backgroundImage: `url(https://torange.biz/photofxnew/27/IMAGE/fragment-template-district-doctor-medicine-doctors-27049.jpg)`,
         }}

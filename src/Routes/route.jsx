@@ -8,7 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import UpCommingAppointments from "../pages/Dashboard/UpCommingAppointments/UpCommingAppointments";
 import TestResult from "../pages/Dashboard/TestResult/TestResult";
 import Profile from "../pages/Dashboard/Profile/Profile";
-import AllTest from "../pages/AllTest/AllTest";
+import AllTest from "../pages/AllTest/AllTest/AllTest";
 
 const router = createBrowserRouter([
   {
