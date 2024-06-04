@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 const TestItem = ({ item }) => {
   return (
-    <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg ">
+    <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg bg-white">
       <img alt="" src={item?.photo} className="h-56 w-full object-cover" />
 
-      <div className="bg-white p-4 sm:p-6">
+      <div className=" p-4 sm:p-6">
         <time dateTime="2022-10-10" className="block text-xs text-gray-500">
           {" "}
           {item?.date}

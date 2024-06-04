@@ -22,9 +22,8 @@ const AddTest = () => {
         name: data.name,
         date: data.date,
         details: data.details,
-        endTime: data.endTime,
         photo: imgLink.data.display_url,
-        startTime: data.startTime,
+        slots: parseInt(data.slots),
         testPrice: parseInt(data.testPrice),
       };
       const result = await axiosSecure.post("/tests", testData);
@@ -105,40 +104,22 @@ const AddTest = () => {
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <label htmlFor="startTime" className="text-sm">
-                  Start Time
+                <label htmlFor="slots" className="text-sm">
+                  Slots
                 </label>
               </div>
               <input
-                type="time"
-                name="startTime"
-                {...register("startTime", {
-                  required: "Start Time Field is required",
+                type="number"
+                name="slots"
+                {...register("slots", {
+                  required: "Slots Field is required",
                 })}
-                id="startTime"
+                id="slots"
+                placeholder="Total Slots"
                 className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
               />
-              {errors.startTime && (
-                <p className="text-red-600">{errors.startTime.message}</p>
-              )}
-            </div>
-            <div>
-              <div className="flex justify-between mb-2">
-                <label htmlFor="endTime" className="text-sm">
-                  End Time
-                </label>
-              </div>
-              <input
-                type="time"
-                name="endTime"
-                {...register("endTime", {
-                  required: "End Time Field is required",
-                })}
-                id="endTime"
-                className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
-              />
-              {errors.endTime && (
-                <p className="text-red-600">{errors.endTime.message}</p>
+              {errors.slots && (
+                <p className="text-red-600">{errors.slots.message}</p>
               )}
             </div>
             <div>
