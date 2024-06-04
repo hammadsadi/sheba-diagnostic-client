@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 const TestItem = ({ item }) => {
-  console.log(item);
   return (
     <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg ">
       <img alt="" src={item?.photo} className="h-56 w-full object-cover" />
@@ -12,18 +11,18 @@ const TestItem = ({ item }) => {
           {item?.date}
         </time>
 
-        <a href="#">
+        <Link to={`/test-details/${item._id}`}>
           <h3 className="mt-0.5 text-lg font-semibold text-gray-900">
             {item?.name}
           </h3>
-        </a>
+        </Link>
 
         <p className="mt-2 line-clamp-3 text-base text-gray-500">
           {item?.details.slice(0, 150)}
         </p>
         <div>
           <Link
-            to="/test-details/98"
+            to={`/test-details/${item._id}`}
             className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary"
           >
             Find out more
