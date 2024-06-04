@@ -11,7 +11,7 @@ import Loader from "../../../../components/Loader/Loader";
 const AllTests = () => {
   let [isTestModalOpen, setIsTestModalOpen] = useState(false);
   const [tests, isLoading, refetch] = useGetAllTests();
-  console.log(tests);
+  const [singleTest, setSingleTest] = useState({});
 
   function openTestModal() {
     setIsTestModalOpen(true);
@@ -20,6 +20,12 @@ const AllTests = () => {
   function closeTestModal() {
     setIsTestModalOpen(false);
   }
+
+  // Handle Test
+  const handleTest = (test) => {
+    setSingleTest(test);
+    openTestModal();
+  };
   if (isLoading) {
     return <Loader />;
   }
@@ -88,7 +94,7 @@ const AllTests = () => {
                       <span>
                         <FaSquarePen
                           className="text-base text-primary cursor-pointer"
-                          onClick={openTestModal}
+                          onClick={() => handleTest(test)}
                         />
                       </span>
                       <span>
@@ -148,15 +154,17 @@ const AllTests = () => {
           </tbody>
         </table>
       </div>
-      {isTestModalOpen && (
-        <MyModal
-          isOpen={isTestModalOpen}
-          close={closeTestModal}
-          modalTitle="Update Test Info"
-        >
-          <UpdateTestForm />
-        </MyModal>
-      )}
+      <MyModal
+        isOpen={isTestModalOpen}
+        close={closeTestModal}
+        modalTitle="Update Test Info"
+      >
+        <UpdateTestForm
+          singleTest={singleTest}
+          closeTestModal={closeTestModal}
+          refetch={refetch}
+        />
+      </MyModal>
     </div>
   );
 };

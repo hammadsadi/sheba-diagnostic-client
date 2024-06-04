@@ -1,13 +1,50 @@
 import { useForm } from "react-hook-form";
-const UpdateTestForm = () => {
+import PropTypes from "prop-types";
+import { useState } from "react";
+import uploadPhotoToCloud from "../../../../utils/uploadImageToCLoud";
+import toastAlert from "../../../../utils/toastAlert";
+import AnimatedSpin from "../../../../components/AnimatedSpin/AnimatedSpin";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+const UpdateTestForm = ({ singleTest, closeTestModal, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+  const [isFormLoading, setIsFormLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    let photoLink = singleTest.photo;
+    try {
+      setIsFormLoading(true);
+      if (data.photo[0]) {
+        const imgLink = await uploadPhotoToCloud(data.photo[0]);
+        photoLink = imgLink.data.display_url;
+      }
+
+      const testData = {
+        name: data.name,
+        date: data.date,
+        details: data.details,
+        photo: photoLink,
+        slots: parseInt(data.slots),
+        testPrice: parseInt(data.testPrice),
+      };
+
+      const result = await axiosSecure.put(
+        `tests/update/${singleTest._id}`,
+        testData
+      );
+      if (result.data.modifiedCount > 0) {
+        setIsFormLoading(false);
+        toastAlert("Test Update Successful", "success");
+        refetch();
+      }
+    } catch (error) {
+      toastAlert(error.message, "error");
+      setIsFormLoading(false);
+    }
   };
   return (
     <div>
@@ -23,6 +60,7 @@ const UpdateTestForm = () => {
             <input
               type="text"
               name="name"
+              defaultValue={singleTest?.name}
               {...register("name", { required: "Name Field is required" })}
               id="name"
               placeholder=" Test Name"
@@ -42,6 +80,7 @@ const UpdateTestForm = () => {
             <input
               type="number"
               name="testPrice"
+              defaultValue={singleTest?.testPrice}
               {...register("testPrice")}
               id="testPrice"
               placeholder="Test Price"
@@ -57,38 +96,34 @@ const UpdateTestForm = () => {
             <input
               type="date"
               name="date"
+              defaultValue={singleTest?.date}
               {...register("date")}
               id="date"
               className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
             />
           </div>
+
+          {/* Slots */}
           <div>
             <div className="flex justify-between mb-2">
-              <label htmlFor="startTime" className="text-sm">
-                Start Time
+              <label htmlFor="slots" className="text-sm">
+                Slots
               </label>
             </div>
             <input
-              type="time"
-              name="startTime"
-              {...register("startTime")}
-              id="startTime"
+              type="number"
+              name="slots"
+              defaultValue={singleTest?.slots}
+              {...register("slots", {
+                required: "Slots Field is required",
+              })}
+              id="slots"
+              placeholder="Total Slots"
               className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
             />
-          </div>
-          <div>
-            <div className="flex justify-between mb-2">
-              <label htmlFor="endTime" className="text-sm">
-                End Time
-              </label>
-            </div>
-            <input
-              type="time"
-              name="endTime"
-              {...register("endTime")}
-              id="endTime"
-              className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
-            />
+            {errors.slots && (
+              <p className="text-red-600">{errors.slots.message}</p>
+            )}
           </div>
           <div>
             <div className="flex justify-between mb-2">
@@ -98,6 +133,7 @@ const UpdateTestForm = () => {
             </div>
             <textarea
               name="details"
+              defaultValue={singleTest?.details}
               id="details"
               {...register("details")}
               placeholder="Details"
@@ -123,10 +159,11 @@ const UpdateTestForm = () => {
           <div>
             <button
               type="submit"
-              // disabled={loading}
+              disabled={isFormLoading}
+              onClick={closeTestModal}
               className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300 flex items-center justify-center"
             >
-              {/* {loading ? <AnimatedSpin /> : "Login"} */}
+              {isFormLoading ? <AnimatedSpin /> : "Update"}
               Update
             </button>
           </div>
@@ -135,5 +172,8 @@ const UpdateTestForm = () => {
     </div>
   );
 };
-
+UpdateTestForm.propTypes = {
+  singleTest: PropTypes.object,
+  closeTestModal: PropTypes.func,
+};
 export default UpdateTestForm;
