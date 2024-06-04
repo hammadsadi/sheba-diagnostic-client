@@ -9,3 +9,25 @@ body {
 .swiper-pagination-bullet-active {
   background: #32c1ce !important;
 }
+.swal-button--cancel {
+  color: white;
+  background-color: #32c1ce;
+}
+
+.swal-button--confirm {
+  background-color: #32c1ce;
+  color: #fff;
+}
+.swal-button--confirm:hover {
+  background-color: #32c1ce !important;
+}
+
+.swal-button--cancel:hover {
+  background-color: #32c1ce !important;
+}
+.swal-button--danger {
+  background-color: red;
+}
+.swal-button--danger:hover {
+  background-color: red !important;
+}

@@ -7,11 +7,14 @@ import { useState } from "react";
 import UpdateTestForm from "../UpdateTestForm/UpdateTestForm";
 import useGetAllTests from "../../../../hooks/useGetAllTests";
 import Loader from "../../../../components/Loader/Loader";
+import swal from "sweetalert";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const AllTests = () => {
   let [isTestModalOpen, setIsTestModalOpen] = useState(false);
   const [tests, isLoading, refetch] = useGetAllTests();
   const [singleTest, setSingleTest] = useState({});
+  const axiosSecure = useAxiosSecure();
 
   function openTestModal() {
     setIsTestModalOpen(true);
@@ -25,6 +28,30 @@ const AllTests = () => {
   const handleTest = (test) => {
     setSingleTest(test);
     openTestModal();
+  };
+
+  // Handle Delete Test
+  const handleDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        swal("Test has been Deleted!", {
+          icon: "success",
+        });
+        // Api Action
+        const { data } = await axiosSecure.delete(`/test/delete/${id}`);
+        if (data.deletedCount > 0) {
+          refetch();
+        }
+      } else {
+        swal("Your Data is safe!");
+      }
+    });
   };
   if (isLoading) {
     return <Loader />;
@@ -64,10 +91,10 @@ const AllTests = () => {
           <tbody className="divide-y divide-gray-200">
             {tests.length > 0 ? (
               <>
-                {tests.map((test) => (
+                {tests.map((test, idx) => (
                   <tr className="odd:bg-gray-50" key={test._id}>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      2
+                      {idx + 1}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                       <img
@@ -98,7 +125,10 @@ const AllTests = () => {
                         />
                       </span>
                       <span>
-                        <FaTrash className="text-base cursor-pointer text-rose-700" />
+                        <FaTrash
+                          className="text-base cursor-pointer text-rose-700"
+                          onClick={() => handleDelete(test._id)}
+                        />
                       </span>
                     </td>
                   </tr>
