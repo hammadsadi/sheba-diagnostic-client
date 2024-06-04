@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
-
-const AddTest = () => {
+const AddBanner = () => {
   const {
     register,
     handleSubmit,
@@ -14,7 +13,7 @@ const AddTest = () => {
     <div className="flex justify-center h-full my-5 items-center">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl shadow-xl dark:bg-gray-50 dark:text-gray-800">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Create New Test</h1>
+          <h1 className="my-3 text-4xl font-bold">Create New Banner</h1>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
@@ -36,21 +35,38 @@ const AddTest = () => {
                 <p className="text-red-600">{errors.name.message}</p>
               )}
             </div>
-
             <div>
               <div className="flex justify-between mb-2">
-                <label htmlFor="testPrice" className="text-sm">
-                  Test Price
+                <label htmlFor="title" className="text-sm">
+                  Title
                 </label>
               </div>
               <input
-                type="number"
-                name="testPrice"
-                {...register("testPrice", {
-                  required: "Price Field is required",
+                type="text"
+                name="title"
+                {...register("title", { required: "Title Field is required" })}
+                id="title"
+                placeholder="Banner Title"
+                className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
+              />
+              {errors.name && (
+                <p className="text-red-600">{errors.name.message}</p>
+              )}
+            </div>
+            <div>
+              <div className="flex justify-between mb-2">
+                <label htmlFor="couponCode" className="text-sm">
+                  Coupon Code
+                </label>
+              </div>
+              <input
+                type="text"
+                name="couponCode"
+                {...register("couponCode", {
+                  required: "Coupon Code Field is required",
                 })}
-                id="testPrice"
-                placeholder="Test Price"
+                id="couponCode"
+                placeholder="Coupon Code"
                 className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
               />
               {errors.testPrice && (
@@ -59,61 +75,25 @@ const AddTest = () => {
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <label htmlFor="date" className="text-sm">
-                  Date
+                <label htmlFor="couponRate" className="text-sm">
+                  Coupon Rate
                 </label>
               </div>
               <input
-                type="date"
-                name="date"
-                {...register("date", {
-                  required: "Date Field is required",
+                type="number"
+                name="couponRate"
+                {...register("couponRate", {
+                  required: "Coupon Rate Field is required",
                 })}
-                id="date"
+                id="testRate"
+                placeholder="Coupon Rate"
                 className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
               />
-              {errors.date && (
-                <p className="text-red-600">{errors.date.message}</p>
+              {errors.couponRate && (
+                <p className="text-red-600">{errors.couponRate.message}</p>
               )}
             </div>
-            <div>
-              <div className="flex justify-between mb-2">
-                <label htmlFor="startTime" className="text-sm">
-                  Start Time
-                </label>
-              </div>
-              <input
-                type="time"
-                name="startTime"
-                {...register("startTime", {
-                  required: "Start Time Field is required",
-                })}
-                id="startTime"
-                className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
-              />
-              {errors.startTime && (
-                <p className="text-red-600">{errors.startTime.message}</p>
-              )}
-            </div>
-            <div>
-              <div className="flex justify-between mb-2">
-                <label htmlFor="endTime" className="text-sm">
-                  End Time
-                </label>
-              </div>
-              <input
-                type="time"
-                name="endTime"
-                {...register("endTime", {
-                  required: "End Time Field is required",
-                })}
-                id="endTime"
-                className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
-              />
-              {errors.endTime && (
-                <p className="text-red-600">{errors.endTime.message}</p>
-              )}
-            </div>
+
             <div>
               <div className="flex justify-between mb-2">
                 <label htmlFor="details" className="text-sm">
@@ -171,4 +151,4 @@ const AddTest = () => {
   );
 };
 
-export default AddTest;
+export default AddBanner;

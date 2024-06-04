@@ -13,6 +13,9 @@ import MenuItem from "../../../components/MenuItem/MenuItem";
 import toastAlert from "../../../utils/toastAlert";
 import { FaUserGroup } from "react-icons/fa6";
 import { GrDocumentTest } from "react-icons/gr";
+import { FaPlusSquare } from "react-icons/fa";
+import { PiFlagBannerLight } from "react-icons/pi";
+import { RiGalleryFill } from "react-icons/ri";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -92,6 +95,7 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">Statistics</span>
               </NavLink>
               <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
+              {/* Admin Route */}
               <MenuItem
                 label="All Users"
                 targetLink="/dashboard/all-users"
@@ -100,7 +104,22 @@ const Sidebar = () => {
               <MenuItem
                 label="Add Test"
                 targetLink="/dashboard/add-test"
+                icon={FaPlusSquare}
+              />
+              <MenuItem
+                label="All Tests"
+                targetLink="/dashboard/all-tests"
                 icon={GrDocumentTest}
+              />
+              <MenuItem
+                label="Add Banner"
+                targetLink="/dashboard/add-banner"
+                icon={RiGalleryFill}
+              />
+              <MenuItem
+                label="All Banner"
+                targetLink="/dashboard/all-banners"
+                icon={PiFlagBannerLight}
               />
               <MenuItem
                 label="Upcoming Appointments"

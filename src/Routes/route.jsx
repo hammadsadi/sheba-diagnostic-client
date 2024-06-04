@@ -12,6 +12,9 @@ import AllTest from "../pages/AllTest/AllTest/AllTest";
 import TestDetails from "../pages/TestDetails/TestDetails";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers/AllUsers";
 import AddTest from "../pages/Dashboard/AddTest/AddTest.jsx/AddTest";
+import AllTests from "../pages/Dashboard/AllTests/AllTests/AllTests";
+import AddBanner from "../pages/Dashboard/AddBanner/AddBanner";
+import AllBanners from "../pages/Dashboard/AllBanners/AllBanners";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +60,18 @@ const router = createBrowserRouter([
       {
         path: "add-test",
         element: <AddTest />,
+      },
+      {
+        path: "all-tests",
+        element: <AllTests />,
+      },
+      {
+        path: "add-banner",
+        element: <AddBanner />,
+      },
+      {
+        path: "all-banners",
+        element: <AllBanners />,
       },
       {
         path: "upcoming-appointments",
