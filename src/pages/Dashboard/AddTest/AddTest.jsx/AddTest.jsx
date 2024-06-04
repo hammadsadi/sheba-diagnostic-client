@@ -1,14 +1,41 @@
 import { useForm } from "react-hook-form";
-
+import uploadPhotoToCloud from "../../../../utils/uploadImageToCLoud";
+import toastAlert from "../../../../utils/toastAlert";
+import AnimatedSpin from "../../../../components/AnimatedSpin/AnimatedSpin";
+import { useState } from "react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 const AddTest = () => {
+  const [isFormLoading, setIsFormLoading] = useState(false);
+  const axiosSecure = useAxiosSecure();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      setIsFormLoading(true);
+      const imgLink = await uploadPhotoToCloud(data.photo[0]);
+      const testData = {
+        name: data.name,
+        date: data.date,
+        details: data.details,
+        endTime: data.endTime,
+        photo: imgLink.data.display_url,
+        startTime: data.startTime,
+        testPrice: parseInt(data.testPrice),
+      };
+      const result = await axiosSecure.post("/tests", testData);
+      if (result.data.insertedId) {
+        setIsFormLoading(false);
+        toastAlert("Test Created Successful", "success");
+        reset();
+      }
+    } catch (error) {
+      toastAlert(error.message, "error");
+    }
   };
   return (
     <div className="flex justify-center h-full my-5 items-center">
@@ -160,8 +187,7 @@ const AddTest = () => {
                 // disabled={loading}
                 className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300 flex items-center justify-center"
               >
-                {/* {loading ? <AnimatedSpin /> : "Login"} */}
-                Add
+                {isFormLoading ? <AnimatedSpin /> : "Add"}
               </button>
             </div>
           </div>
