@@ -1,5 +1,5 @@
 // import useAuth from "../../../hooks/useAuth";
-import BannerSlider from "../BannerSlider/BannerSlider";
+import Banner from "../BannerSlider/Banner";
 import FeaturesTest from "../FeaturesTest/FeaturesTest";
 import PromotionBanner from "../PromotionBanner/PromotionBanner";
 
@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div>
       {/* Slider */}
-      <BannerSlider />
+      <Banner />
       {/* Features Test */}
       <FeaturesTest />
       {/* Promotion Banner */}

@@ -1,13 +1,43 @@
 import { useForm } from "react-hook-form";
+import uploadPhotoToCloud from "../../../utils/uploadImageToCLoud";
+import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toastAlert from "../../../utils/toastAlert";
+import AnimatedSpin from "../../../components/AnimatedSpin/AnimatedSpin";
 const AddBanner = () => {
+  const [isFormLoading, setIsFormLoading] = useState(false);
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      setIsFormLoading(true);
+      const imgLink = await uploadPhotoToCloud(data.photo[0]);
+      const bannerInfo = {
+        name: data.name,
+        title: data.title,
+        couponCode: data.couponCode,
+        couponRate: parseInt(data.couponRate),
+        details: data.details,
+        photo: imgLink.data.display_url,
+        isActive: false,
+      };
+      const res = await axiosSecure.post("/banner", bannerInfo);
+      console.log(res.data);
+      if (res.data.insertedId) {
+        toastAlert("Banner Created Successful", "success");
+        reset();
+        setIsFormLoading(false);
+      }
+    } catch (error) {
+      setIsFormLoading(false);
+      toastAlert(error.message, "error");
+    }
   };
   return (
     <div className="flex justify-center h-full my-5 items-center">
@@ -137,11 +167,10 @@ const AddBanner = () => {
             <div>
               <button
                 type="submit"
-                // disabled={loading}
+                disabled={isFormLoading}
                 className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300 flex items-center justify-center"
               >
-                {/* {loading ? <AnimatedSpin /> : "Login"} */}
-                Add
+                {isFormLoading ? <AnimatedSpin /> : "Add"}
               </button>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-const SliderItem = ({ item }) => {
+const BannerItem = ({ item }) => {
   const { title, desc, couponCode, discount, image } = item;
   return (
     <section
@@ -49,7 +49,7 @@ const SliderItem = ({ item }) => {
     </section>
   );
 };
-SliderItem.propTypes = {
+BannerItem.propTypes = {
   item: PropTypes.object,
 };
-export default SliderItem;
+export default BannerItem;

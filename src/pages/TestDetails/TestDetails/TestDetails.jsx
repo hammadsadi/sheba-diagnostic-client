@@ -1,9 +1,15 @@
 import { Link, useParams } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../../components/Loader/Loader";
-import toastAlert from "../../utils/toastAlert";
+import Loader from "../../../components/Loader/Loader";
+import toastAlert from "../../../utils/toastAlert";
+import useAuth from "../../../hooks/useAuth";
+import MyModal from "../../../components/MyModal/MyModal";
+import { useState } from "react";
+import PromoCode from "../PromoCode/PromoCode";
 const TestDetails = () => {
+  let [isTestModalOpen, setIsTestModalOpen] = useState(false);
+  const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { data: testDetails = {}, isLoading } = useQuery({
@@ -13,12 +19,35 @@ const TestDetails = () => {
       return data;
     },
   });
+  console.log(testDetails);
+  function openTestModal() {
+    setIsTestModalOpen(true);
+  }
+
+  function closeTestModal() {
+    setIsTestModalOpen(false);
+  }
 
   // Handle Test Book
   const handleBookTest = () => {
-    // if (parseInt(testDetails.slots) < 0) {
-    // }
-    console.log(typeof testDetails.slots);
+    if (!testDetails.slots > 0) {
+      return toastAlert("Sorry...! Slot is Not Available", "error");
+    }
+    openTestModal();
+    const bookingInfo = {
+      testId: testDetails?._id,
+      testName: testDetails?.name,
+      photo: testDetails?.photo,
+      price: testDetails?.testPrice,
+      userSlotNumber: testDetails?.slots,
+      status: "Pending",
+      patientInfo: {
+        patientEmail: user?.email,
+        patientName: user?.displayName,
+        photo: user?.photoURL,
+        date: new Date(),
+      },
+    };
   };
 
   if (isLoading) return <Loader />;
@@ -76,7 +105,7 @@ const TestDetails = () => {
                   <div className="flex justify-between mb-2"></div>
                   <input
                     type="email"
-                    defaultValue="hammad.sadi@gmail.com"
+                    defaultValue={user?.email}
                     className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
                     readOnly
                   />
@@ -99,6 +128,14 @@ const TestDetails = () => {
           </div>
         </article>
       </div>
+      {/* Popup Modal */}
+      <MyModal
+        isOpen={isTestModalOpen}
+        close={closeTestModal}
+        modalTitle="Please Pay First For Booking"
+      >
+        <PromoCode />
+      </MyModal>
     </div>
   );
 };
