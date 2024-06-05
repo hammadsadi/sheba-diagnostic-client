@@ -4,11 +4,35 @@ import { GoDotFill } from "react-icons/go";
 
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useGetAllBanners from "../../../hooks/useGetAllBanners";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toastAlert from "../../../utils/toastAlert";
 const AllBanners = () => {
-  const [banners] = useGetAllBanners();
-  console.log(banners);
-  const handleDeleteBanner = (id) => {
-    alert(id);
+  const axioSecure = useAxiosSecure();
+  const [banners, , refetch] = useGetAllBanners();
+
+  const handleDeleteBanner = async (id) => {
+    try {
+      const { data } = await axioSecure.delete(`/banner/${id}`);
+      if (data.deletedCount > 0) {
+        toastAlert("Status Updated Successful", "success");
+        refetch();
+      }
+    } catch (error) {
+      toastAlert(error.message, "error");
+    }
+  };
+
+  // handleUpdateStatus
+  const handleUpdateStatus = async (id, status) => {
+    try {
+      const { data } = await axioSecure.patch(`/banner/${id}`, { status });
+      if (data.modifiedCount > 0) {
+        toastAlert("Status Updated Successful", "success");
+        refetch();
+      }
+    } catch (error) {
+      toastAlert(error.message, "error");
+    }
   };
   return (
     <div>
@@ -71,12 +95,22 @@ const AllBanners = () => {
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                       {banner.isActive ? (
-                        <button className="flex items-center cursor-pointer">
+                        <button
+                          className="flex items-center cursor-pointer"
+                          onClick={() =>
+                            handleUpdateStatus(banner._id, !banner.isActive)
+                          }
+                        >
                           <GoDotFill className="text-primary" />{" "}
                           <span>Active</span>
                         </button>
                       ) : (
-                        <button className="flex items-center cursor-pointer">
+                        <button
+                          className="flex items-center cursor-pointer"
+                          onClick={() =>
+                            handleUpdateStatus(banner._id, !banner.isActive)
+                          }
+                        >
                           <GoDotFill className="text-rose-700" />{" "}
                           <span>Inactive</span>
                         </button>

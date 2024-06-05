@@ -28,7 +28,6 @@ const AddBanner = () => {
         isActive: false,
       };
       const res = await axiosSecure.post("/banner", bannerInfo);
-      console.log(res.data);
       if (res.data.insertedId) {
         toastAlert("Banner Created Successful", "success");
         reset();
