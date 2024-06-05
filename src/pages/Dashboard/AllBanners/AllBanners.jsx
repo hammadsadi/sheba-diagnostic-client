@@ -1,8 +1,15 @@
 import { FaTrash } from "react-icons/fa";
-import { HiDocumentAdd } from "react-icons/hi";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+// import { GoDotFil } from "react-icons/go";
+import { GoDotFill } from "react-icons/go";
 
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useGetAllBanners from "../../../hooks/useGetAllBanners";
 const AllBanners = () => {
+  const [banners] = useGetAllBanners();
+  console.log(banners);
+  const handleDeleteBanner = (id) => {
+    alert(id);
+  };
   return (
     <div>
       <div className="mt-3 md:mt-6">
@@ -20,13 +27,16 @@ const AllBanners = () => {
                 Image
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Name
+                Title
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Price
+                Coupon Code
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Reservations
+                Discount
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                Status
               </th>
 
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
@@ -36,37 +46,62 @@ const AllBanners = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            <tr className="odd:bg-gray-50">
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                2
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBTDPwLgj4cYlyRiR1XE7F_JKO6QLki82-Q&s"
-                  className="w-7 h-7 object-cover rounded-full border border-primary"
-                  alt=""
-                />
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                Hammad sadi
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                $667
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                <p className="flex justify-center items-center">
-                  <span>
-                    <HiDocumentAdd className="text-lg text-primary cursor-pointer" />
-                  </span>{" "}
-                  <span>12</span>
-                </p>
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
-                <span>
-                  <FaTrash className="text-base cursor-pointer text-rose-700" />
-                </span>
-              </td>
-            </tr>
+            {banners.length > 0 ? (
+              <>
+                {banners.map((banner, idx) => (
+                  <tr className="odd:bg-gray-50" key={banner._id}>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      {idx + 1}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      <img
+                        src={banner.photo}
+                        className="w-10 h-7 object-cover  border border-primary"
+                        alt=""
+                      />
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {banner.title}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {banner.couponCode}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      %{banner.couponRate}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {banner.isActive ? (
+                        <button className="flex items-center cursor-pointer">
+                          <GoDotFill className="text-primary" />{" "}
+                          <span>Active</span>
+                        </button>
+                      ) : (
+                        <button className="flex items-center cursor-pointer">
+                          <GoDotFill className="text-rose-700" />{" "}
+                          <span>Inactive</span>
+                        </button>
+                      )}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
+                      <span>
+                        <FaTrash
+                          className="text-base cursor-pointer text-rose-700"
+                          onClick={() => handleDeleteBanner(banner._id)}
+                        />
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <>
+                <tr>
+                  <td colSpan="6" className="py-3">
+                    No Data Found
+                  </td>
+                </tr>
+              </>
+            )}
           </tbody>
         </table>
       </div>
