@@ -15,6 +15,7 @@ const AddBanner = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       setIsFormLoading(true);
       const imgLink = await uploadPhotoToCloud(data.photo[0]);
@@ -91,16 +92,11 @@ const AddBanner = () => {
               <input
                 type="text"
                 name="couponCode"
-                {...register("couponCode", {
-                  required: "Coupon Code Field is required",
-                })}
+                {...register("couponCode")}
                 id="couponCode"
                 placeholder="Coupon Code"
                 className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
               />
-              {errors.testPrice && (
-                <p className="text-red-600">{errors.testPrice.message}</p>
-              )}
             </div>
             <div>
               <div className="flex justify-between mb-2">
@@ -111,16 +107,11 @@ const AddBanner = () => {
               <input
                 type="number"
                 name="couponRate"
-                {...register("couponRate", {
-                  required: "Coupon Rate Field is required",
-                })}
+                {...register("couponRate")}
                 id="testRate"
                 placeholder="Coupon Rate"
                 className="w-full px-3 py-2 border rounded-md bg-gray-50 focus:outline-none focus:border-primary"
               />
-              {errors.couponRate && (
-                <p className="text-red-600">{errors.couponRate.message}</p>
-              )}
             </div>
 
             <div>

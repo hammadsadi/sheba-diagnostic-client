@@ -6,9 +6,10 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useGetAllBanners from "../../../hooks/useGetAllBanners";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toastAlert from "../../../utils/toastAlert";
+import Loader from "../../../components/Loader/Loader";
 const AllBanners = () => {
   const axioSecure = useAxiosSecure();
-  const [banners, , refetch] = useGetAllBanners();
+  const [banners, isLoading, refetch] = useGetAllBanners();
 
   const handleDeleteBanner = async (id) => {
     try {
@@ -34,6 +35,7 @@ const AllBanners = () => {
       toastAlert(error.message, "error");
     }
   };
+  if (isLoading) return <Loader />;
   return (
     <div>
       <div className="mt-3 md:mt-6">
@@ -91,7 +93,7 @@ const AllBanners = () => {
                       {banner.couponCode}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      %{banner.couponRate}
+                      {banner.couponRate && <span>%</span>} {banner.couponRate}
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                       {banner.isActive ? (

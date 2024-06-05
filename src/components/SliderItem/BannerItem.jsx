@@ -1,37 +1,38 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const BannerItem = ({ item }) => {
-  const { title, desc, couponCode, discount, image } = item;
+  const { title, details, couponCode, couponRate, photo } = item || {};
+  console.log(item);
   return (
     <section
       className={`relative h-[calc(100vh-72px)]  bg-cover bg-center bg-no-repeat`}
       style={{
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url(${photo})`,
       }}
     >
       <div className="absolute  bg-gradient-to-r from-white/90 to-white/5 top-0 left-0 w-full h-[calc(100vh-72px)]"></div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
         <div className="max-w-xl text-center md:text-left">
-          {discount && (
+          {couponRate && (
             <h4 className="text-white inline-block px-2 py-1 md:text-2xl bg-primary-opacity font-bold">
-              {discount}% Discount
+              {couponRate}% Discount
             </h4>
           )}
 
-          <h1 className="text-3xl font-extrabold sm:text-5xl">
-            {title.slice(0, 18)}
+          <h1 className="text-3xl font-extrabold sm:text-5xl capitalize">
+            {title?.slice(0, 20)}
             <strong className="block font-extrabold text-primary">
               {" "}
-              {title.slice(18)}
+              {title?.slice(20)}
             </strong>
           </h1>
 
           <p className="mt-4 max-w-lg md:text-base font-medium">
-            {desc}
+            {details}
             {couponCode && (
               <span className="font-semibold text-lg text-primary">
-                Coupon {couponCode}
+                &nbsp; Coupon {couponCode}
               </span>
             )}
           </p>
