@@ -19,7 +19,6 @@ const TestDetails = () => {
       return data;
     },
   });
-  console.log(testDetails);
   function openTestModal() {
     setIsTestModalOpen(true);
   }
@@ -134,7 +133,7 @@ const TestDetails = () => {
         close={closeTestModal}
         modalTitle="Please Pay First For Booking"
       >
-        <PromoCode />
+        <PromoCode testDetails={testDetails} />
       </MyModal>
     </div>
   );

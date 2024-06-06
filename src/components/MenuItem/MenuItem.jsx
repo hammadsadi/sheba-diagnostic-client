@@ -9,6 +9,7 @@ const MenuItem = ({ label, targetLink, icon: Icon }) => {
           isActive ? "bg-primary  text-white" : "text-gray-600"
         }`
       }
+      end
     >
       <Icon className="w-5 h-5" />
 

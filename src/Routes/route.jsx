@@ -15,6 +15,8 @@ import AllTests from "../pages/Dashboard/AllTests/AllTests/AllTests";
 import AddBanner from "../pages/Dashboard/AddBanner/AddBanner";
 import AllBanners from "../pages/Dashboard/AllBanners/AllBanners";
 import TestDetails from "../pages/TestDetails/TestDetails/TestDetails";
+import Statistics from "../pages/Dashboard/Statistics/Statistics/Statistics";
+import Payment from "../pages/Payment/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <Register />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
       {
         path: "/all-tests",
@@ -56,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "/dashboard",
+        element: <Statistics />,
       },
       {
         path: "add-test",
