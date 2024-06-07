@@ -45,6 +45,7 @@ const Register = () => {
         blood: data?.blood,
         district: data?.district,
         upazila: data?.upazila,
+        role: "guest",
         status: "active",
       };
       // Create User

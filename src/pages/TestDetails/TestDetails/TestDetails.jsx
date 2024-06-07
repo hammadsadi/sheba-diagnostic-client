@@ -7,8 +7,10 @@ import useAuth from "../../../hooks/useAuth";
 import MyModal from "../../../components/MyModal/MyModal";
 import { useState } from "react";
 import PromoCode from "../PromoCode/PromoCode";
+import useGetCurrentUser from "../../../hooks/useGetCurrentUser";
 const TestDetails = () => {
   let [isTestModalOpen, setIsTestModalOpen] = useState(false);
+  const [activeUser] = useGetCurrentUser();
   const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -32,6 +34,7 @@ const TestDetails = () => {
     if (!testDetails.slots > 0) {
       return toastAlert("Sorry...! Slot is Not Available", "error");
     }
+    console.log(activeUser, "accc");
     openTestModal();
     const bookingInfo = {
       testId: testDetails?._id,

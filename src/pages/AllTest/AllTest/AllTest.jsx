@@ -5,9 +5,7 @@ import TestItem from "../TestItem/TestItem";
 
 const AllTest = () => {
   const [tests, isLoading] = useGetAllTests();
-  // const currentDate =
-  console.log(new Date().toLocaleDateString());
-  console.log(new Date().toISOString());
+
   if (isLoading) return <Loader />;
   return (
     <div>
@@ -21,14 +19,6 @@ const AllTest = () => {
             {tests.map((item) => (
               <TestItem key={item._id} item={item} />
             ))}
-            {/* {tests
-              .filter(
-                (data) =>
-                  new Date(data.date).getTime() <= new Date().toISOString()
-              )
-              .map((item) => (
-                <TestItem key={item._id} item={item} />
-              ))} */}
           </div>
         </div>
       </section>

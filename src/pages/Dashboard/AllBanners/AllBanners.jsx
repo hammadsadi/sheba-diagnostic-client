@@ -15,7 +15,7 @@ const AllBanners = () => {
     try {
       const { data } = await axioSecure.delete(`/banner/${id}`);
       if (data.deletedCount > 0) {
-        toastAlert("Status Updated Successful", "success");
+        toastAlert("Banner Deleted Successful", "success");
         refetch();
       }
     } catch (error) {

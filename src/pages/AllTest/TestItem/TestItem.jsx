@@ -18,7 +18,7 @@ const TestItem = ({ item }) => {
         </Link>
 
         <p className="mt-2 line-clamp-3 text-base text-gray-500">
-          {item?.details.slice(0, 150)}
+          {item?.details?.slice(0, 150)}
         </p>
         <div>
           <Link
