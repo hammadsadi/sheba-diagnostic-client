@@ -15,18 +15,21 @@ const Login = () => {
   const onSubmit = (data) => {
     try {
       // Create User
-      signIn(data.email, data.password)
-        .then(() => {
-          toastAlert("Login Successful", "success");
-          setLoading(false);
-          navigate("/dashboard");
+      signIn(data?.email, data?.password)
+        .then((res) => {
+          if (res?.user) {
+            toastAlert("Login Successful", "success");
+            setLoading(false);
+            navigate("/");
+          }
         })
         .catch(() => {
           toastAlert("Invalid Email and Password", "error");
           setLoading(false);
         });
     } catch (error) {
-      console.log(error.message);
+      toastAlert(error.message, "error");
+      setLoading(false);
     }
   };
   return (

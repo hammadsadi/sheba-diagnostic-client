@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "./useAxiosCommon";
+import useAxiosSecure from "./useAxiosSecure";
 const useGetAllUser = () => {
-  const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const {
     data: users = [],
     isLoading,
@@ -9,7 +9,7 @@ const useGetAllUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get("/user");
+      const { data } = await axiosSecure.get("/user");
       return data;
     },
   });

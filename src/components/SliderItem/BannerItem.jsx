@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const BannerItem = ({ item }) => {
   const { title, details, couponCode, couponRate, photo } = item || {};
-  console.log(item);
   return (
     <section
       className={`relative h-[calc(100vh-72px)]  bg-cover bg-center bg-no-repeat`}

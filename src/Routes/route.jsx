@@ -17,6 +17,7 @@ import AllBanners from "../pages/Dashboard/AllBanners/AllBanners";
 import TestDetails from "../pages/TestDetails/TestDetails/TestDetails";
 import Statistics from "../pages/Dashboard/Statistics/Statistics/Statistics";
 import Payment from "../pages/Payment/Payment/Payment";
+import AdminPrivate from "./AdminPrivate";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/payment",
-        element: <Payment />,
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-tests",
@@ -41,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/test-details/:id",
-        element: <TestDetails />,
+        element: (
+          <PrivateRoute>
+            <TestDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -61,39 +70,75 @@ const router = createBrowserRouter([
       // Admin Routes
       {
         path: "all-users",
-        element: <AllUsers />,
+        element: (
+          <AdminPrivate>
+            <AllUsers />
+          </AdminPrivate>
+        ),
       },
       {
         path: "/dashboard",
-        element: <Statistics />,
+        element: (
+          <AdminPrivate>
+            <Statistics />
+          </AdminPrivate>
+        ),
       },
       {
         path: "add-test",
-        element: <AddTest />,
+        element: (
+          <AdminPrivate>
+            <AddTest />
+          </AdminPrivate>
+        ),
       },
       {
         path: "all-tests",
-        element: <AllTests />,
+        element: (
+          <AdminPrivate>
+            <AllTests />
+          </AdminPrivate>
+        ),
       },
       {
         path: "add-banner",
-        element: <AddBanner />,
+        element: (
+          <AdminPrivate>
+            <AddBanner />
+          </AdminPrivate>
+        ),
       },
       {
         path: "all-banners",
-        element: <AllBanners />,
+        element: (
+          <AdminPrivate>
+            <AllBanners />
+          </AdminPrivate>
+        ),
       },
       {
         path: "upcoming-appointments",
-        element: <UpCommingAppointments />,
+        element: (
+          <PrivateRoute>
+            <UpCommingAppointments />
+          </PrivateRoute>
+        ),
       },
       {
         path: "test-results",
-        element: <TestResult />,
+        element: (
+          <PrivateRoute>
+            <TestResult />
+          </PrivateRoute>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
     ],
   },

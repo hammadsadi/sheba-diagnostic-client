@@ -16,12 +16,14 @@ import { GrDocumentTest } from "react-icons/gr";
 import { FaPlusSquare } from "react-icons/fa";
 import { PiFlagBannerLight } from "react-icons/pi";
 import { RiGalleryFill } from "react-icons/ri";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const navigate = useNavigate();
-
+  const [isAdmin] = useAdmin();
+  // console.log(isAdmin);
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -82,49 +84,55 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Statistics */}
-
-              <MenuItem
-                label="Statistics"
-                targetLink="/dashboard"
-                icon={BsGraphUp}
-              />
-              <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
-              {/* Admin Route */}
-              <MenuItem
-                label="All Users"
-                targetLink="/dashboard/all-users"
-                icon={FaUserGroup}
-              />
-              <MenuItem
-                label="Add Test"
-                targetLink="/dashboard/add-test"
-                icon={FaPlusSquare}
-              />
-              <MenuItem
-                label="All Tests"
-                targetLink="/dashboard/all-tests"
-                icon={GrDocumentTest}
-              />
-              <MenuItem
-                label="Add Banner"
-                targetLink="/dashboard/add-banner"
-                icon={RiGalleryFill}
-              />
-              <MenuItem
-                label="All Banner"
-                targetLink="/dashboard/all-banners"
-                icon={PiFlagBannerLight}
-              />
-              <MenuItem
-                label="Upcoming Appointments"
-                targetLink="/dashboard/upcoming-appointments"
-                icon={FaCalendarPlus}
-              />
-              <MenuItem
-                label="Test Results"
-                targetLink="/dashboard/test-results"
-                icon={SiTestcafe}
-              />
+              {isAdmin ? (
+                <>
+                  <MenuItem
+                    label="Statistics"
+                    targetLink="/dashboard"
+                    icon={BsGraphUp}
+                  />
+                  {/* Admin Route */}
+                  <MenuItem
+                    label="All Users"
+                    targetLink="/dashboard/all-users"
+                    icon={FaUserGroup}
+                  />
+                  <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
+                  <MenuItem
+                    label="Add Test"
+                    targetLink="/dashboard/add-test"
+                    icon={FaPlusSquare}
+                  />
+                  <MenuItem
+                    label="All Tests"
+                    targetLink="/dashboard/all-tests"
+                    icon={GrDocumentTest}
+                  />
+                  <MenuItem
+                    label="Add Banner"
+                    targetLink="/dashboard/add-banner"
+                    icon={RiGalleryFill}
+                  />
+                  <MenuItem
+                    label="All Banner"
+                    targetLink="/dashboard/all-banners"
+                    icon={PiFlagBannerLight}
+                  />
+                </>
+              ) : (
+                <>
+                  <MenuItem
+                    label="Upcoming Appointments"
+                    targetLink="/dashboard/upcoming-appointments"
+                    icon={FaCalendarPlus}
+                  />
+                  <MenuItem
+                    label="Test Results"
+                    targetLink="/dashboard/test-results"
+                    icon={SiTestcafe}
+                  />
+                </>
+              )}
             </nav>
           </div>
         </div>

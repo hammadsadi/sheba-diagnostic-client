@@ -11,10 +11,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import useAxiosCommon from "../hooks/useAxiosCommon";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const axiosCommon = useAxiosCommon();
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -45,14 +47,25 @@ const AuthProvider = ({ children }) => {
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-
-      setLoading(false);
+      if (currentUser) {
+        setUser(currentUser);
+        const user = { email: currentUser?.email };
+        axiosCommon.post("/jwt", user).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+        setLoading(false);
+      } else {
+        setLoading(false);
+        localStorage.removeItem("access-token");
+        setUser(null);
+      }
     });
     return () => {
-      return unsubscribe();
+      return unsubscribe;
     };
-  }, []);
+  }, [axiosCommon]);
 
   const authInfo = {
     user,
