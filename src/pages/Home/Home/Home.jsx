@@ -1,6 +1,7 @@
 // import useAuth from "../../../hooks/useAuth";
 import Banner from "../BannerSlider/Banner";
 import FeaturesTest from "../FeaturesTest/FeaturesTest";
+import HealthTips from "../HealthTips/HealthTips";
 import PromotionBanner from "../PromotionBanner/PromotionBanner";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <FeaturesTest />
       {/* Promotion Banner */}
       <PromotionBanner />
+      <HealthTips />
     </div>
   );
 };

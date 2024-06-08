@@ -13,7 +13,7 @@ import toastAlert from "../../../../utils/toastAlert";
 const AllUsers = () => {
   const [users, , refetch] = useGetAllUser();
   const [bookings] = useGetAllBookings();
-  const axioSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const [singleUserInfo, setSingleUserInfo] = useState({});
   let [isOpen, setIsOpen] = useState(false);
   const doc = new jsPDF();
@@ -45,7 +45,7 @@ const AllUsers = () => {
 
   // handleUpdateUserStatus
   const handleUpdateUserStatus = async (id, status) => {
-    const { data } = await axioSecure.patch(`/user/${id}`, { status });
+    const { data } = await axiosSecure.patch(`/user/${id}`, { status });
     if (data.modifiedCount > 0) {
       toastAlert(`User ${status} Successful`, "success");
       refetch();
@@ -55,7 +55,7 @@ const AllUsers = () => {
   // handleChangeRole
   const handleChangeRole = async (e, id) => {
     // console.log(e.target.value, id);
-    const { data } = await axioSecure.patch(`/user/role/${id}`, {
+    const { data } = await axiosSecure.patch(`/user/role/${id}`, {
       role: e.target.value,
     });
     if (data.modifiedCount > 0) {
@@ -122,7 +122,7 @@ const AllUsers = () => {
                         name=""
                         id=""
                         className="py-[3px] px-2 focus:outline-none"
-                        onChange={(e) => handleChangeRole(e, user._id)}
+                        onChange={(e) => handleChangeRole(e, user?._id)}
                       >
                         <option
                           value="guest"
@@ -164,7 +164,7 @@ const AllUsers = () => {
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                       <button
                         className="cursor-pointer flex justify-center text-sm items-center bg-primary text-white py-[1px] px-2 rounded-sm"
-                        onClick={() => handleSeeDetails(user._id)}
+                        onClick={() => handleSeeDetails(user?._id)}
                       >
                         See Info
                       </button>
@@ -172,7 +172,9 @@ const AllUsers = () => {
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
                       <button
                         className="cursor-pointer flex justify-center text-sm items-center bg-primary text-white py-[1px] px-2 rounded-sm"
-                        onClick={() => handleDownloadPdf(user._id, user.email)}
+                        onClick={() =>
+                          handleDownloadPdf(user?._id, user?.email)
+                        }
                       >
                         <MdOutlineDownload /> <span>Download Info</span>
                       </button>

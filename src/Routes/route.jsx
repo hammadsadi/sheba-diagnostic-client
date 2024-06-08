@@ -61,11 +61,7 @@ const router = createBrowserRouter([
   // Dashboard
   {
     path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardMain />
-      </PrivateRoute>
-    ),
+    element: <DashboardMain />,
     children: [
       // Admin Routes
       {
@@ -78,11 +74,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: (
-          <AdminPrivate>
-            <Statistics />
-          </AdminPrivate>
-        ),
+        element: <Statistics />,
       },
       {
         path: "add-test",

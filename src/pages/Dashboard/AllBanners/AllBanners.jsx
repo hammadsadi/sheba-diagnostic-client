@@ -8,12 +8,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toastAlert from "../../../utils/toastAlert";
 import Loader from "../../../components/Loader/Loader";
 const AllBanners = () => {
-  const axioSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const [banners, isLoading, refetch] = useGetAllBanners();
 
   const handleDeleteBanner = async (id) => {
     try {
-      const { data } = await axioSecure.delete(`/banner/${id}`);
+      const { data } = await axiosSecure.delete(`/banner/${id}`);
       if (data.deletedCount > 0) {
         toastAlert("Banner Deleted Successful", "success");
         refetch();
@@ -26,7 +26,7 @@ const AllBanners = () => {
   // handleUpdateStatus
   const handleUpdateStatus = async (id, status) => {
     try {
-      const { data } = await axioSecure.patch(`/banner/${id}`, { status });
+      const { data } = await axiosSecure.patch(`/banner/${id}`, { status });
       if (data.modifiedCount > 0) {
         toastAlert("Status Updated Successful", "success");
         refetch();
