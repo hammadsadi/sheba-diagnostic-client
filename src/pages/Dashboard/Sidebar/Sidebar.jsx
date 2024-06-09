@@ -50,7 +50,7 @@ const Sidebar = () => {
             <Link to="/">
               <img
                 // className='hidden md:block'
-                src="https://i.ibb.co/4ZXzmq5/logo.png"
+                src="https://i.ibb.co/hyXnRcV/sheba.png"
                 alt="logo"
                 width="100"
                 height="100"
@@ -61,7 +61,7 @@ const Sidebar = () => {
 
         <button
           onClick={handleToggle}
-          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+          className="mobile-menu-button p-4 focus:outline-none focus:bg-primary focus:text-white"
         >
           <AiOutlineBars className="h-5 w-5" />
         </button>
