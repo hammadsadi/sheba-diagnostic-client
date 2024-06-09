@@ -10,13 +10,17 @@ import useGetAllUser from "../../../../hooks/useGetAllUser";
 import useGetAllBookings from "../../../../hooks/useGetAllBookings";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toastAlert from "../../../../utils/toastAlert";
+import DownloadUserInfo from "../DownloadUserInfo/DownloadUserInfo";
+import UserInfoModal from "../../../../components/UserInfoModal/UserInfoModal";
 const AllUsers = () => {
   const [users, , refetch] = useGetAllUser();
   const [bookings] = useGetAllBookings();
   const axiosSecure = useAxiosSecure();
   const [singleUserInfo, setSingleUserInfo] = useState({});
   let [isOpen, setIsOpen] = useState(false);
-  const doc = new jsPDF();
+  let [isOpenUserInfoModal, setIsOpenUserInfoModal] = useState(false);
+  const [userId, setUserId] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
 
   function open() {
     setIsOpen(true);
@@ -25,16 +29,6 @@ const AllUsers = () => {
   function close() {
     setIsOpen(false);
   }
-  // Handle Download PDF
-  const handleDownloadPdf = (id, email) => {
-    // User Info
-
-    let userInfo = users.find((item) => item._id === id);
-    // console.log(userInfo);
-    doc.text(userInfo.name, 10, 10);
-    doc.text(userInfo.email, 10, 20);
-    doc.save("userInfo.pdf");
-  };
 
   // See User Details
   const handleSeeDetails = (id) => {
@@ -62,6 +56,22 @@ const AllUsers = () => {
       toastAlert(`User ${e.target.value} Updated Successful`, "success");
       refetch();
     }
+  };
+
+  // Download User Info Modal
+  function openUserInfoModal() {
+    setIsOpenUserInfoModal(true);
+  }
+
+  function closeUserInfoModal() {
+    setIsOpenUserInfoModal(false);
+  }
+
+  // Handle Download PDF
+  const handleDownloadPdf = (id, email) => {
+    setUserId(id);
+    setUserEmail(email);
+    openUserInfoModal();
   };
   return (
     <div>
@@ -197,6 +207,21 @@ const AllUsers = () => {
         <MyModal isOpen={isOpen} close={close} modalTitle="User Info">
           <UserDetails singleUserInfo={singleUserInfo} />
         </MyModal>
+        {/* My Modal For User Info Download */}
+        {/* <MyModal
+          isOpen={isOpenUserInfoModal}
+          close={closeUserInfoModal}
+          modalTitle="Download User Info"
+        >
+          <DownloadUserInfo userEmail={userEmail} userId={userId} />
+        </MyModal> */}
+        <UserInfoModal
+          isOpen={isOpenUserInfoModal}
+          close={closeUserInfoModal}
+          modalTitle="Download User Info"
+        >
+          <DownloadUserInfo userEmail={userEmail} userId={userId} />
+        </UserInfoModal>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import PropTypes from "prop-types";
-export default function MyModal({ isOpen, children, close, modalTitle }) {
+export default function UserInfoModal({ isOpen, children, close, modalTitle }) {
   return (
     <>
       <Transition appear show={isOpen}>
@@ -26,7 +26,7 @@ export default function MyModal({ isOpen, children, close, modalTitle }) {
                 leaveFrom="opacity-100 transform-[scale(100%)]"
                 leaveTo="opacity-0 transform-[scale(95%)]"
               >
-                <DialogPanel className="w-full max-w-md rounded-xl bg-[#ebfcfd] border p-6 backdrop-blur-2xl shadow-xl">
+                <DialogPanel className="w-full max-w-2xl rounded-xl bg-[#ebfcfd] border p-6 backdrop-blur-2xl shadow-xl">
                   <DialogTitle
                     as="h3"
                     className="text-2xl text-gray-900 text-center font-semibold mb-2"
@@ -45,7 +45,7 @@ export default function MyModal({ isOpen, children, close, modalTitle }) {
   );
 }
 
-MyModal.propTypes = {
+UserInfoModal.propTypes = {
   isOpen: PropTypes.bool,
   close: PropTypes.bool,
   children: PropTypes.element,
