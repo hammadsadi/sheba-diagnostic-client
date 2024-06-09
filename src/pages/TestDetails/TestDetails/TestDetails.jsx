@@ -30,11 +30,14 @@ const TestDetails = () => {
   }
 
   // Handle Test Book
-  const handleBookTest = () => {
+  const handleBookTest = async () => {
     if (!testDetails.slots > 0) {
       return toastAlert("Sorry...! Slot is Not Available", "error");
     }
-
+    const { data } = await axiosSecure.get(`/user/current/${user?.email}`);
+    if (data.status === "block") {
+      return toastAlert("You are Blocked User", "error");
+    }
     openTestModal();
     const bookingInfo = {
       testId: testDetails?._id,

@@ -19,6 +19,7 @@ import Statistics from "../pages/Dashboard/Statistics/Statistics/Statistics";
 import Payment from "../pages/Payment/Payment/Payment";
 import AdminPrivate from "./AdminPrivate";
 import Reservation from "../pages/Dashboard/Reservation/Reservation/Reservation/Reservation";
+import BlockRoute from "./BlockRoute";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,11 @@ const router = createBrowserRouter([
   // Dashboard
   {
     path: "/dashboard",
-    element: <DashboardMain />,
+    element: (
+      <BlockRoute>
+        <DashboardMain />
+      </BlockRoute>
+    ),
     children: [
       // Admin Routes
       {

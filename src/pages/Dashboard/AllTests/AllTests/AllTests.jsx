@@ -9,13 +9,17 @@ import useGetAllTests from "../../../../hooks/useGetAllTests";
 import Loader from "../../../../components/Loader/Loader";
 import swal from "sweetalert";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Reservations from "../Reservations/Reservations";
 
 const AllTests = () => {
   let [isTestModalOpen, setIsTestModalOpen] = useState(false);
+  let [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [tests, isLoading, refetch] = useGetAllTests();
+  const [reservationsList, setReservationsList] = useState([]);
   const [singleTest, setSingleTest] = useState({});
   const axiosSecure = useAxiosSecure();
 
+  // Update Modal
   function openTestModal() {
     setIsTestModalOpen(true);
   }
@@ -29,6 +33,22 @@ const AllTests = () => {
     setSingleTest(test);
     openTestModal();
   };
+
+  //  Reservation Modal
+  function openReservationModal() {
+    setIsReservationModalOpen(true);
+  }
+
+  function closeReservationModal() {
+    setIsReservationModalOpen(false);
+  }
+  // handleReservation
+  const handleReservation = async (id) => {
+    openReservationModal();
+    const { data } = await axiosSecure.get(`/reservation/${id}`);
+    setReservationsList(data);
+  };
+  console.log(reservationsList);
 
   // Handle Delete Test
   const handleDelete = (id) => {
@@ -111,10 +131,9 @@ const AllTests = () => {
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                       <p className="flex justify-center items-center">
-                        <span>
+                        <span onClick={() => handleReservation(test?._id)}>
                           <HiDocumentAdd className="text-lg text-primary cursor-pointer" />
                         </span>{" "}
-                        <span>12</span>
                       </p>
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
@@ -146,6 +165,7 @@ const AllTests = () => {
           </tbody>
         </table>
       </div>
+      {/* Update Modal */}
       <MyModal
         isOpen={isTestModalOpen}
         close={closeTestModal}
@@ -156,6 +176,14 @@ const AllTests = () => {
           closeTestModal={closeTestModal}
           refetch={refetch}
         />
+      </MyModal>
+      {/* Show Reservation Modal */}
+      <MyModal
+        isOpen={isReservationModalOpen}
+        close={closeReservationModal}
+        modalTitle="Reservations"
+      >
+        <Reservations reservationsList={reservationsList} />
       </MyModal>
     </div>
   );

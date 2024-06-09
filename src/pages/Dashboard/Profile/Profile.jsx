@@ -31,7 +31,7 @@ const Profile = () => {
   function closeUserInfoUpdateModal() {
     setIsProfileModalOpen(false);
   }
-  console.log(user.emailVerified);
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white shadow-lg rounded-2xl w-full">

@@ -11,7 +11,7 @@ const useGetAllBookings = () => {
   } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/booking?email='sadi'");
+      const { data } = await axiosSecure.get("/bookings");
       return data;
     },
   });
