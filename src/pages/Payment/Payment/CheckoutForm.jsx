@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
@@ -18,6 +18,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   // Discount Price For Pay
   let totalTestPrice = parseInt(singleTest.testPrice);
@@ -95,6 +96,7 @@ const CheckoutForm = () => {
           testPrice: totalTestPrice,
           bookingDate: new Date(),
           photo: singleTest.photo,
+          details: singleTest.details,
           report: "Pending",
           transactionId: paymentMethod.id,
           patientInfo: {
@@ -109,6 +111,7 @@ const CheckoutForm = () => {
           console.log(error.message);
         }
         toastAlert("Payment Completed Successful", "success");
+        navigate("/dashboard/upcoming-appointments");
       }
     }
   };

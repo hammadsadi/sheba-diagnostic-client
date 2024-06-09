@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toastAlert from "../../../utils/toastAlert";
 
 const Nav = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const navItem = (
     <>
       <li>
@@ -17,6 +21,15 @@ const Nav = () => {
       </li>
     </>
   );
+
+  // handleDashboard
+  const handleDashboard = async () => {
+    const { data } = await axiosSecure.get(`/user/current/${user?.email}`);
+    if (data.status === "block") {
+      return toastAlert("You are Blocked User", "error");
+    }
+    navigate("/dashboard");
+  };
   return (
     <div className="navbar bg-secondary text-white">
       <div className="navbar-start">
@@ -52,8 +65,8 @@ const Nav = () => {
       <div className="navbar-end">
         {user ? (
           <Link
-            to="/dashboard"
             className="bg-primary md:py-2 md:px-6 py-1 px-3 font-semibold text-sm md:text-base rounded-sm"
+            onClick={handleDashboard}
           >
             Dashboard
           </Link>

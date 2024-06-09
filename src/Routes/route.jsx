@@ -18,6 +18,7 @@ import TestDetails from "../pages/TestDetails/TestDetails/TestDetails";
 import Statistics from "../pages/Dashboard/Statistics/Statistics/Statistics";
 import Payment from "../pages/Payment/Payment/Payment";
 import AdminPrivate from "./AdminPrivate";
+import Reservation from "../pages/Dashboard/Reservation/Reservation/Reservation/Reservation";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,14 @@ const router = createBrowserRouter([
         element: (
           <AdminPrivate>
             <AddTest />
+          </AdminPrivate>
+        ),
+      },
+      {
+        path: "reservation",
+        element: (
+          <AdminPrivate>
+            <Reservation />
           </AdminPrivate>
         ),
       },

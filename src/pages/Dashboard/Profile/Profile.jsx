@@ -1,14 +1,37 @@
 import useAuth from "../../../hooks/useAuth";
-import { MdEditDocument } from "react-icons/md";
+import { FaPen } from "react-icons/fa6";
 import { BsPatchCheckFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
-
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-const Profile = () => {
-  const { user } = useAuth();
+import { useState } from "react";
+import MyModal from "../../../components/MyModal/MyModal";
+import UpdateProfile from "./UpdateProfile";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { TiWarningOutline } from "react-icons/ti";
 
-  console.log(user);
+const Profile = () => {
+  const { user, loading } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  let [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+
+  const { data: singleUser = [], refetch } = useQuery({
+    queryKey: ["singleUser", user?.email],
+    enabled: !loading && !!user?.email,
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/user/current/${user?.email}`);
+      return data;
+    },
+  });
+
+  function openUserInfoUpdateModal() {
+    setIsProfileModalOpen(true);
+  }
+
+  function closeUserInfoUpdateModal() {
+    setIsProfileModalOpen(false);
+  }
+  console.log(user.emailVerified);
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white shadow-lg rounded-2xl w-full">
@@ -26,37 +49,52 @@ const Profile = () => {
             />
           </a>
 
-          <p className="text-xs text-white bg-primary px-2 rounded-lg">Admin</p>
-          <p className="mt-2  font-medium text-gray-800 flex gap-1">
-            <span className="text-xl">{user.displayName}</span>{" "}
-            <div className="tooltip" data-tip="Verified">
-              <BsPatchCheckFill className="text-primary" />
-            </div>
+          <p className="text-xs text-white bg-primary px-2 rounded-lg capitalize">
+            {singleUser?.role}
           </p>
-          <div>
+          {user.emailVerified ? (
+            <p className="mt-2  font-medium text-gray-800 flex gap-1">
+              <span className="text-xl">{user.displayName}</span>{" "}
+              <div className="tooltip" data-tip="Verified">
+                <BsPatchCheckFill className="text-primary" />
+              </div>
+            </p>
+          ) : (
+            <p className="mt-2  font-medium text-gray-800 flex gap-1">
+              <span className="text-xl">{user.displayName}</span>{" "}
+              <div className="tooltip" data-tip="Unverified">
+                <TiWarningOutline className="text-yellow-500" />
+              </div>
+            </p>
+          )}
+
+          <div className="text-center">
             <p className="flex items-center gap-2">
               <FaLocationDot /> <span>Dhaka Bangla desh</span>
             </p>
-          </div>
-          <div className="w-full p-2 mt-4 rounded-lg">
-            <div>
-              <Tabs>
-                <TabList>
-                  <Tab>About</Tab>
-                  <Tab>Appointment</Tab>
-                </TabList>
-
-                <TabPanel>
-                  <h2>Any content 1</h2>
-                </TabPanel>
-                <TabPanel>
-                  <h2>Any content 2</h2>
-                </TabPanel>
-              </Tabs>
-            </div>
+            <button
+              className="flex gap-1 items-center mx-auto bg-primary text-white px-1 md:px-2 rounded-sm cursor-pointer"
+              onClick={openUserInfoUpdateModal}
+            >
+              <span>
+                <FaPen className="text-sm/relaxed" />
+              </span>
+              <span className="text-sm/relaxed">Edit Profile</span>
+            </button>
           </div>
         </div>
       </div>
+      <MyModal
+        isOpen={isProfileModalOpen}
+        close={closeUserInfoUpdateModal}
+        modalTitle="Update Profile Info"
+      >
+        <UpdateProfile
+          singleUser={singleUser}
+          closeUserInfoUpdateModal={closeUserInfoUpdateModal}
+          refetch={refetch}
+        />
+      </MyModal>
     </div>
   );
 };

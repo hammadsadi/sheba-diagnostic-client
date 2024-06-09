@@ -143,44 +143,6 @@ const AllTests = () => {
                 </tr>
               </>
             )}
-
-            {/* <tr className="odd:bg-gray-50">
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                2
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBTDPwLgj4cYlyRiR1XE7F_JKO6QLki82-Q&s"
-                  className="w-7 h-7 object-cover rounded-full border border-primary"
-                  alt=""
-                />
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                Hammad sadi
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                $667
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                <p className="flex justify-center items-center">
-                  <span>
-                    <HiDocumentAdd className="text-lg text-primary cursor-pointer" />
-                  </span>{" "}
-                  <span>12</span>
-                </p>
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
-                <span>
-                  <FaSquarePen
-                    className="text-base text-primary cursor-pointer"
-                    onClick={openTestModal}
-                  />
-                </span>
-                <span>
-                  <FaTrash className="text-base cursor-pointer text-rose-700" />
-                </span>
-              </td>
-            </tr> */}
           </tbody>
         </table>
       </div>

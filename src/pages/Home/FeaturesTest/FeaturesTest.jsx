@@ -1,7 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
 import FeaturedBookTestItem from "../../../components/FeaturedBookTestItem/FeaturedBookTestItem";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const FeaturesTest = () => {
+  const axiosCommon = useAxiosCommon();
+  const { data: bookings = [] } = useQuery({
+    queryKey: ["all-bookings"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get("bookings");
+      return data;
+    },
+  });
+
   return (
     <div>
       <section className="mt-10 md:mt-20">
@@ -10,10 +21,9 @@ const FeaturesTest = () => {
             <SectionTitle heading="featured tests" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <FeaturedBookTestItem />
-            <FeaturedBookTestItem />
-            <FeaturedBookTestItem />
-            <FeaturedBookTestItem />
+            {bookings?.slice(0, 5).map((booking) => (
+              <FeaturedBookTestItem key={booking._id} booking={booking} />
+            ))}
           </div>
         </div>
       </section>

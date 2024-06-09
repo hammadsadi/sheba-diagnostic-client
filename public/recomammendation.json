@@ -1,0 +1,62 @@
+[
+  {
+    "recommendation": "Maintain a balanced diet rich in fruits, vegetables, and whole grains to boost your immune system.",
+    "image": "https://t4.ftcdn.net/jpg/02/60/04/09/360_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg",
+    "doctorName": "Dr. Emily Johnson",
+    "position": "Nutritionist"
+  },
+  {
+    "recommendation": "Engage in at least 30 minutes of moderate physical activity every day to improve cardiovascular health.",
+    "image": "https://static.vecteezy.com/system/resources/thumbnails/028/287/555/small/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg",
+    "doctorName": "Dr. Michael Smith",
+    "position": "Cardiologist"
+  },
+  {
+    "recommendation": "Stay hydrated by drinking at least 8 glasses of water daily to keep your body functioning properly.",
+    "image": "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg",
+    "doctorName": "Dr. Sarah Lee",
+    "position": "Family Medicine Physician"
+  },
+  {
+    "recommendation": "Practice good sleep hygiene by maintaining a regular sleep schedule and creating a restful environment.",
+    "image": "https://familydoctor.org/wp-content/uploads/2018/02/41808433_l.jpg",
+    "doctorName": "Dr. James Martinez",
+    "position": "Sleep Specialist"
+  },
+  {
+    "recommendation": "Manage stress through mindfulness techniques, such as meditation and deep breathing exercises.",
+    "image": "https://static.vecteezy.com/system/resources/thumbnails/030/928/115/small_2x/handsome-indian-doctor-generate-ai-photo.jpg",
+    "doctorName": "Dr. Linda Brown",
+    "position": "Psychiatrist"
+  },
+  {
+    "recommendation": "Avoid smoking and limit alcohol consumption to reduce the risk of chronic diseases.",
+    "image": "https://cdn.punchng.com/wp-content/uploads/2023/09/20144750/Umoh-Michael-e1695217670244.jpeg",
+    "doctorName": "Dr. Robert Wilson",
+    "position": "General Practitioner"
+  },
+  {
+    "recommendation": "Get regular check-ups and screenings to detect potential health issues early.",
+    "image": "https://www.wellingtonregional.com/sites/wellingtonregional.com/files/doctors_visit_1200x900.jpg",
+    "doctorName": "Dr. Karen Davis",
+    "position": "Internal Medicine Specialist"
+  },
+  {
+    "recommendation": "Maintain proper posture to avoid musculoskeletal problems, especially if you work at a desk.",
+    "image": "https://www.shutterstock.com/image-vector/vector-medical-icon-doctor-image-600nw-1170228883.jpg",
+    "doctorName": "Dr. John Anderson",
+    "position": "Orthopedic Surgeon"
+  },
+  {
+    "recommendation": "Wash your hands frequently with soap and water to prevent the spread of infections.",
+    "image": "https://www.citizenshospitals.com/static/uploads/130789a4-764e-4ee3-88fe-68f9278452d6-1692966652977.png",
+    "doctorName": "Dr. Elizabeth Thompson",
+    "position": "Infectious Disease Specialist"
+  },
+  {
+    "recommendation": "Incorporate regular eye exams to monitor and maintain eye health, especially if you use screens often.",
+    "image": "https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
+    "doctorName": "Dr. Richard White",
+    "position": "Ophthalmologist"
+  }
+]

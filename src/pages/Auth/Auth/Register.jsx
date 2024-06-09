@@ -50,7 +50,7 @@ const Register = () => {
       };
       // Create User
       createUser(data.email, data.password)
-        .then(async (res) => {
+        .then(async () => {
           const response = await axiosCommon.post("/user", userData);
           if (response.data.insertedId) {
             await updateUserProfile(data?.name, imgLink.data.display_url);

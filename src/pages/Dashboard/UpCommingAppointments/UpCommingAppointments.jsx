@@ -66,37 +66,39 @@ const UpCommingAppointments = () => {
           <tbody className="divide-y divide-gray-200">
             {upcomingBookings?.length > 0 ? (
               <>
-                {upcomingBookings.map((booking, idx) => (
-                  <tr className="odd:bg-gray-50" key={booking._id}>
-                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                      {idx + 1}
-                    </td>
+                {upcomingBookings
+                  .filter((upcoming) => upcoming.report === "Pending")
+                  .map((booking, idx) => (
+                    <tr className="odd:bg-gray-50" key={booking._id}>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        {idx + 1}
+                      </td>
 
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {booking.testName}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      ${booking.testPrice}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {new Date(booking?.bookingDate).toDateString()}
-                    </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                      {new Date(booking?.bookingDate).toLocaleTimeString()}
-                    </td>
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                        {booking.testName}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                        ${booking.testPrice}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                        {new Date(booking?.bookingDate).toDateString()}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                        {new Date(booking?.bookingDate).toLocaleTimeString()}
+                      </td>
 
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
-                      <button
-                        className="cursor-pointer flex items-center"
-                        onClick={() => handleDeleteBooking(booking._id)}
-                      >
-                        {" "}
-                        <MdCancel className="text-red-600 text-lg " />{" "}
-                        <span>Cancel</span>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                      <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
+                        <button
+                          className="cursor-pointer flex items-center"
+                          onClick={() => handleDeleteBooking(booking._id)}
+                        >
+                          {" "}
+                          <MdCancel className="text-red-600 text-lg " />{" "}
+                          <span>Cancel</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </>
             ) : (
               <>

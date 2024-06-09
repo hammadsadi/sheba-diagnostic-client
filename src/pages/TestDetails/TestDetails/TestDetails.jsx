@@ -34,7 +34,7 @@ const TestDetails = () => {
     if (!testDetails.slots > 0) {
       return toastAlert("Sorry...! Slot is Not Available", "error");
     }
-    console.log(activeUser, "accc");
+
     openTestModal();
     const bookingInfo = {
       testId: testDetails?._id,

@@ -164,7 +164,6 @@ const UpdateTestForm = ({ singleTest, closeTestModal, refetch }) => {
               className="w-full px-8 py-3 font-semibold rounded-md bg-primary text-white hover:bg-primary-opacity transition duration-300 flex items-center justify-center"
             >
               {isFormLoading ? <AnimatedSpin /> : "Update"}
-              Update
             </button>
           </div>
         </div>
@@ -175,5 +174,6 @@ const UpdateTestForm = ({ singleTest, closeTestModal, refetch }) => {
 UpdateTestForm.propTypes = {
   singleTest: PropTypes.object,
   closeTestModal: PropTypes.func,
+  refetch: PropTypes.func,
 };
 export default UpdateTestForm;

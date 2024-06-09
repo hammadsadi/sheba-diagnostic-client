@@ -1,4 +1,3 @@
-import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -7,22 +6,36 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import HealthTipsItem from "../../../components/HealthTipsItem/HealthTipsItem";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { useQuery } from "@tanstack/react-query";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 const HealthTips = () => {
+  const axiosCommon = useAxiosCommon();
+  const { data: healthTips = [] } = useQuery({
+    queryKey: ["healthTips"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get("/health/recommendation");
+      return data;
+    },
+  });
   return (
-    <section className="my-8 bg-[#e1f1f2] text-gray-800">
-      <div className="container flex flex-col items-center mx-auto mb-12 md:p-10 md:px-12">
-        <h1 className="p-4 text-4xl font-semibold leading-none text-center">
-          What our customers are saying about us
-        </h1>
+    <section className="mt-10 md:mt-20 text-gray-800">
+      <div>
+        <SectionTitle heading="health tips" />
       </div>
       <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10">
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
+          loop={true}
           pagination={{
             clickable: true,
+          }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
           }}
           breakpoints={{
             640: {
@@ -38,27 +51,14 @@ const HealthTips = () => {
               spaceBetween: 50,
             },
           }}
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <HealthTipsItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <HealthTipsItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <HealthTipsItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <HealthTipsItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <HealthTipsItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <HealthTipsItem />
-          </SwiperSlide>
+          {healthTips?.map((health) => (
+            <SwiperSlide key={health._id}>
+              <HealthTipsItem health={health} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>

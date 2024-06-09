@@ -118,7 +118,7 @@ const Footer = () => {
                     className="text-white transition hover:text-primary"
                     href="#"
                   >
-                    Company History
+                    Medical History
                   </a>
                 </li>
 
@@ -127,26 +127,7 @@ const Footer = () => {
                     className="text-white transition hover:text-primary"
                     href="#"
                   >
-                    Meet the Team
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-white transition hover:text-primary"
-                    href="#"
-                  >
-                    Employee Handbook
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-white transition hover:text-primary"
-                    href="#"
-                  >
-                    {" "}
-                    Careers{" "}
+                    Meet the Doctor
                   </a>
                 </li>
               </ul>
@@ -158,40 +139,38 @@ const Footer = () => {
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
                   <a
-                    className="text-white transition hover:text-primary"
+                    className="text-white transition hover:text-primary capitalize"
                     href="#"
                   >
-                    Web Development
+                    laparoscopic cholecystectomy
                   </a>
                 </li>
 
                 <li>
                   <a
-                    className="text-white transition hover:text-primary"
+                    className="text-white transition hover:text-primary capitalize"
                     href="#"
                   >
-                    {" "}
-                    Web Design{" "}
+                    Esophagus, Stomach and Spleen
                   </a>
                 </li>
 
                 <li>
                   <a
-                    className="text-white transition hover:text-primary"
+                    className="text-white transition hover:text-primary capitalize"
                     href="#"
                   >
-                    {" "}
-                    Marketing{" "}
+                    aparoscopic cholecystectomy
                   </a>
                 </li>
 
                 <li>
                   <a
-                    className="text-white transition hover:text-primary"
+                    className="text-white transition hover:text-primary capitalize"
                     href="#"
                   >
                     {" "}
-                    Google Ads{" "}
+                    laparoscopic cholecystectomy
                   </a>
                 </li>
               </ul>
@@ -262,7 +241,7 @@ const Footer = () => {
                     </svg>
 
                     <span className="flex-1 text-white transition hover:text-primary">
-                      john@doe.com
+                      sheba@doe.com
                     </span>
                   </a>
                 </li>

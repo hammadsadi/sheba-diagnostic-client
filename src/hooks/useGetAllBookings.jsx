@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "./useAxiosCommon";
+
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetAllBookings = () => {
-  const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const {
     data: bookings = [],
     isLoading,
@@ -10,7 +11,7 @@ const useGetAllBookings = () => {
   } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get("/booking");
+      const { data } = await axiosSecure.get("/booking?email='sadi'");
       return data;
     },
   });

@@ -17,6 +17,7 @@ import { FaPlusSquare } from "react-icons/fa";
 import { PiFlagBannerLight } from "react-icons/pi";
 import { RiGalleryFill } from "react-icons/ri";
 import useAdmin from "../../../hooks/useAdmin";
+import { LuSaveAll } from "react-icons/lu";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -117,6 +118,11 @@ const Sidebar = () => {
                     label="All Banner"
                     targetLink="/dashboard/all-banners"
                     icon={PiFlagBannerLight}
+                  />
+                  <MenuItem
+                    label="Reservation"
+                    targetLink="/dashboard/reservation"
+                    icon={LuSaveAll}
                   />
                 </>
               ) : (
