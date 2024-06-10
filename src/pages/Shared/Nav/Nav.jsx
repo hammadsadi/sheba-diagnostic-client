@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toastAlert from "../../../utils/toastAlert";
@@ -10,14 +10,24 @@ const Nav = () => {
   const navItem = (
     <>
       <li>
-        <Link to="/" className="text-sm md:text-base font-normal">
+        <NavLink to="/" className="text-sm md:text-base font-normal">
           Home
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/all-tests" className="text-sm md:text-base font-normal">
+        <NavLink to="/all-tests" className="text-sm md:text-base font-normal">
           All Tests
-        </Link>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/about-us" className="text-sm md:text-base font-normal">
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact-us" className="text-sm md:text-base font-normal">
+          Contact Us
+        </NavLink>
       </li>
     </>
   );

@@ -198,9 +198,9 @@ const Footer = () => {
                   </a>
                 </li>
 
-                <li>
+                {/* <li>
                   <a
-                    className="group flex  gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+                    className="group flex  gap-1.5 justify-center md:justify-start"
                     href="#"
                   >
                     <span className="text-white transition group-hover:text-primary">
@@ -212,7 +212,7 @@ const Footer = () => {
                       <span className="relative inline-flex size-2 rounded-full bg-teal-500"></span>
                     </span>
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
 

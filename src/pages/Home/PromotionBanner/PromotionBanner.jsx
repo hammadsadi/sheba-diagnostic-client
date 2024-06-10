@@ -18,7 +18,7 @@ const PromotionBanner = () => {
 
             <div className="mt-4 md:mt-8 flex flex-wrap justify-center gap-4">
               <a
-                className="block w-full rounded border border-primary bg-primary md:px-12 px-6 py-2 md:py-3 text-base font-medium text-white hover:bg-primary-opacity hover:border-primary-opacity hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                className="block  rounded border border-primary bg-primary md:px-12 px-3 py-1 w-fit md:py-3 text-base font-medium text-white hover:bg-primary-opacity hover:border-primary-opacity hover:text-white focus:outline-none focus:ring active:text-opacity-75 "
                 href="#"
               >
                 Get Appointment

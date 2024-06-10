@@ -4,15 +4,15 @@ const BannerItem = ({ item }) => {
   const { title, details, couponCode, couponRate, photo } = item || {};
   return (
     <section
-      className={`relative h-[calc(100vh-72px)]  bg-cover bg-center bg-no-repeat`}
+      className={`relative md:h-[calc(100vh-72px)]  bg-cover bg-center bg-no-repeat`}
       style={{
         backgroundImage: `url(${photo})`,
       }}
     >
-      <div className="absolute  bg-gradient-to-r from-white/90 to-white/5 top-0 left-0 w-full h-[calc(100vh-72px)]"></div>
+      <div className="absolute  bg-gradient-to-r from-white/90 to-white/5 top-0 left-0 w-full h-full md:h-[calc(100vh-72px)]"></div>
 
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-        <div className="max-w-xl text-center md:text-left">
+      <div className="relative mx-auto max-w-screen-xl px-4 py-14 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
+        <div className="max-w-xl  md:text-left">
           {couponRate && (
             <h4 className="text-white inline-block px-2 py-1 md:text-2xl bg-primary-opacity font-bold">
               {couponRate}% Discount
@@ -36,10 +36,10 @@ const BannerItem = ({ item }) => {
             )}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4 text-center">
+          <div className="mt-8 flex flex-wrap gap-4 text-center md:text-left">
             <Link
               to="/all-tests"
-              className="block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-primary-opacity focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+              className="  rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-primary-opacity focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
             >
               Get Started
             </Link>

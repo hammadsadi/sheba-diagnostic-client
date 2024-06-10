@@ -1,28 +1,43 @@
-import { useEffect, useState } from "react";
-// import Loader from "../../../components/Loader/Loader";
+import { useState } from "react";
+import Loader from "../../../components/Loader/Loader";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import TestItem from "../TestItem/TestItem";
 import { isToday, isFuture, compareAsc } from "date-fns";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { useQuery } from "@tanstack/react-query";
 const AllTest = () => {
   const [testList, setTestList] = useState([]);
+  const [filterTestList, setFilterTestList] = useState([]);
   const axiosCommon = useAxiosCommon();
-
-  useEffect(() => {
-    axiosCommon.get("tests").then((res) => {
-      setTestList(res.data);
-    });
-  }, [axiosCommon]);
+  const { data: listTests = [], isLoading } = useQuery({
+    queryKey: ["listTests"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get("/tests");
+      setTestList(data);
+      setFilterTestList(data);
+      return data;
+    },
+  });
+  // useEffect(() => {
+  //   axiosCommon.get("tests").then((res) => {
+  //     setTestList(res.data);
+  //   });
+  // }, [axiosCommon]);
 
   // handleChangeTestdate
   const handleChangeTestdate = (e) => {
-    let flDate = testList.filter((dt) => {
+    let flDate = filterTestList.filter((dt) => {
+      // compareAsc(new Date(dt?.date), new Date(e.target.value));
       let res = compareAsc(new Date(dt?.date), new Date(e.target.value));
-      console.log(res);
-      return;
+      if (res === 0) {
+        return dt;
+      }
     });
+    setTestList(flDate);
+    console.log(flDate);
   };
-  // if (isLoading) return <Loader />;
+
+  if (isLoading) return <Loader />;
   return (
     <div>
       {" "}

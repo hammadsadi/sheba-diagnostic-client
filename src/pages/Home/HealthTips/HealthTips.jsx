@@ -21,34 +21,32 @@ const HealthTips = () => {
     },
   });
   return (
-    <section className="mt-10 md:mt-20 text-gray-800">
+    <section className="mt-10 md:mt-20 text-gray-800 hidden md:block">
       <div>
         <SectionTitle heading="health tips" />
       </div>
-      <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10">
+      <div className="container mx-auto text-center flex justify-center">
         <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
+          // spaceBetween={10}
           loop={true}
           pagination={{
             clickable: true,
           }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          // autoplay={{
+          //   delay: 2500,
+          //   disableOnInteraction: false,
+          // }}
           breakpoints={{
             640: {
               slidesPerView: 1,
-              spaceBetween: 20,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 40,
+              // spaceBetween: 40,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 50,
+              // spaceBetween: 50,
             },
           }}
           modules={[Pagination, Autoplay]}

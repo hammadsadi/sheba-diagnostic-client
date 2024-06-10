@@ -20,15 +20,22 @@ import Payment from "../pages/Payment/Payment/Payment";
 import AdminPrivate from "./AdminPrivate";
 import Reservation from "../pages/Dashboard/Reservation/Reservation/Reservation/Reservation";
 import BlockRoute from "./BlockRoute";
+import ContactUs from "../pages/ContactUs/ContactUs/ContactUs";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
       {
         path: "/sign-up",
