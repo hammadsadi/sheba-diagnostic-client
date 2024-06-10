@@ -1,8 +1,37 @@
-# React + Vite
+# Sheba Diagnostic Center
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [ Live Site URL](https://diagnostic-management-312cf.web.app/)
 
-Currently, two official plugins are available:
+Click here for the Live Site: [https://diagnostic-management-312cf.web.app](https://diagnostic-management-312cf.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Admin Info
+
+1. Admin Email
+
+```sadiahmed580@gmail.com
+
+```
+
+2. Admin Password
+
+```Sadi12345
+
+```
+
+## Website Features
+
+- Test / Service Booking System
+- User Can book If Available booking slots
+- User can apply promo code for Discount
+- User can make payment using stripe. When A User Book a Test / Service
+- Display test data available for the future dates and starting from date of today
+- User can search feature to filter by date
+- Role Based Authentication
+- Protect Route based on Role
+- Admin Can Download Any User Data in PDF file format
+- Admin Can Block Any User
+- Blocked User Cannot Book any Test / Service and he cannot access her Dashboard
+- An admin can change the role of a user
+- Admin Can Change Test Report
+- Admin Can Add Update and Delete Banner, Test and More
+- Admin / User Can Update her profile info
