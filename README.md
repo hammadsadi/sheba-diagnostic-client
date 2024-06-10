@@ -8,13 +8,15 @@ Click here for the Live Site: [https://diagnostic-management-312cf.web.app](http
 
 1. Admin Email
 
-```sadiahmed580@gmail.com
+```bash
+sadiahmed580@gmail.com
 
 ```
 
 2. Admin Password
 
-```Sadi12345
+```bash
+Sadi12345
 
 ```
 
