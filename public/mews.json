@@ -1,0 +1,38 @@
+[
+  {
+    "title": " Blood Count (CBC)",
+    "image": "https://example.com/images/cbc.jpg",
+    "desc": "A Complete Blood Count (CBC) test measures several components and features of your blood, including red and white blood cells, hemoglobin, hematocrit, and platelets."
+  },
+  {
+    "title": "Basic Metabolic Panel (BMP)",
+    "image": "https://example.com/images/bmp.jpg",
+    "desc": "A Basic Metabolic Panel (BMP) includes tests for calcium, glucose, electrolytes, and renal function. It helps assess your blood sugar level, electrolyte balance, and kidney function."
+  },
+
+  {
+    "title": "Thyroid Function Tests",
+    "image": "https://example.com/images/thyroid_tests.jpg",
+    "desc": "Thyroid Function Tests measure the levels of thyroid hormones (T3 and T4) and thyroid-stimulating hormone (TSH) in your blood to assess thyroid gland function."
+  },
+  {
+    "title": "Comprehensive Metabolic Panel (CMP)",
+    "image": "https://example.com/images/cmp.jpg",
+    "desc": "A Comprehensive Metabolic Panel (CMP) includes tests for liver function, kidney function, blood sugar levels, and electrolytes. It provides a broader overview of your body's chemical balance and metabolism."
+  },
+  {
+    "title": "Urinalysis",
+    "image": "https://example.com/images/urinalysis.jpg",
+    "desc": "A Urinalysis is a test of your urine used to detect and manage a wide range of disorders, such as urinary tract infections, kidney disease, and diabetes."
+  },
+  {
+    "title": "Prothrombin Time (PT/INR)",
+    "image": "https://example.com/images/pt_inr.jpg",
+    "desc": "The Prothrombin Time (PT) test and its derived measure (INR) are used to assess the blood's ability to clot and to monitor patients on anticoagulant therapy."
+  },
+  {
+    "title": "Liver Function Tests",
+    "image": "https://example.com/images/liver_function.jpg",
+    "desc": "Liver Function Tests measure various enzymes, proteins, and substances in the blood that are indicative of liver health and function."
+  }
+]

@@ -11,15 +11,17 @@ import HealthTipsItem from "../../../components/HealthTipsItem/HealthTipsItem";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import Loader from "../../../components/Loader/Loader";
 const HealthTips = () => {
   const axiosCommon = useAxiosCommon();
-  const { data: healthTips = [] } = useQuery({
+  const { data: healthTips = [], isLoading } = useQuery({
     queryKey: ["healthTips"],
     queryFn: async () => {
       const { data } = await axiosCommon.get("/health/recommendation");
       return data;
     },
   });
+  if (isLoading) return <Loader />;
   return (
     <section className="mt-10 md:mt-20 text-gray-800 hidden md:block">
       <div>

@@ -22,6 +22,8 @@ import Reservation from "../pages/Dashboard/Reservation/Reservation/Reservation/
 import BlockRoute from "./BlockRoute";
 import ContactUs from "../pages/ContactUs/ContactUs/ContactUs";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AboutUs from "../pages/AboutUs/AboutUs/AboutUs";
+import NewsAndEvents from "../pages/NewsAndEvents/NewsAndEvents/NewsAndEvents";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/news-events",
+        element: <NewsAndEvents />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/sign-up",
@@ -78,16 +88,20 @@ const router = createBrowserRouter([
     children: [
       // Admin Routes
       {
+        index: true,
+        element: (
+          <AdminPrivate>
+            <Statistics />
+          </AdminPrivate>
+        ),
+      },
+      {
         path: "all-users",
         element: (
           <AdminPrivate>
             <AllUsers />
           </AdminPrivate>
         ),
-      },
-      {
-        path: "/dashboard",
-        element: <Statistics />,
       },
       {
         path: "add-test",

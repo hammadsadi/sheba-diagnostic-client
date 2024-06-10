@@ -15,7 +15,6 @@ const AddTest = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(new Date(data.date).toDateString());
     try {
       setIsFormLoading(true);
       const imgLink = await uploadPhotoToCloud(data.photo[0]);

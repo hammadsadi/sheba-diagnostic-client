@@ -87,6 +87,7 @@ const Sidebar = () => {
               {/* Statistics */}
               {isAdmin ? (
                 <>
+                  <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
                   <MenuItem
                     label="Statistics"
                     targetLink="/dashboard"
@@ -98,7 +99,7 @@ const Sidebar = () => {
                     targetLink="/dashboard/all-users"
                     icon={FaUserGroup}
                   />
-                  <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
+
                   <MenuItem
                     label="Add Test"
                     targetLink="/dashboard/add-test"
@@ -127,6 +128,7 @@ const Sidebar = () => {
                 </>
               ) : (
                 <>
+                  <MenuItem label="Home" targetLink="/" icon={MdHomeWork} />
                   <MenuItem
                     label="Upcoming Appointments"
                     targetLink="/dashboard/upcoming-appointments"

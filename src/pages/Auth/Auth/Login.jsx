@@ -21,7 +21,6 @@ const Login = () => {
             // navigate("/dashboard");
             toastAlert("Login Successful", "success");
             setLoading(false);
-            console.log(res.user);
             navigate("/");
           }
         })

@@ -20,6 +20,11 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink to="/news-events" className="text-sm md:text-base font-normal">
+          News & Events
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/about-us" className="text-sm md:text-base font-normal">
           About Us
         </NavLink>
@@ -38,7 +43,7 @@ const Nav = () => {
     if (data.status === "block") {
       return toastAlert("You are Blocked User", "error");
     }
-    navigate("/dashboard");
+    navigate("/dashboard/profile");
   };
   return (
     <div className="navbar bg-secondary text-white">
@@ -62,7 +67,7 @@ const Nav = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#1c2a2b] text-center rounded-box w-52"
           >
             {navItem}
           </ul>

@@ -56,7 +56,7 @@ const Register = () => {
             await updateUserProfile(data?.name, imgLink.data.display_url);
             toastAlert("User Created Successful", "success");
             setLoading(false);
-            navigate("/dashboard");
+            navigate("/");
           }
         })
         .catch((err) => {

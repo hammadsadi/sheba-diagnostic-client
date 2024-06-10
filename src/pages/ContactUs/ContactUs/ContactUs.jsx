@@ -1,4 +1,8 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { FaCalendarPlus } from "react-icons/fa6";
+import { FiPhoneCall } from "react-icons/fi";
+import { FaEnvelopeOpen } from "react-icons/fa";
+import { FaLocationArrow } from "react-icons/fa";
 
 const ContactUs = () => {
   return (
@@ -8,13 +12,58 @@ const ContactUs = () => {
           <SectionTitle heading="Contact Us" />
         </div>
         <div className="container mx-auto px-2 md:px-0">
-          <div>
-            <div>
-              <div>icon</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-8">
+            <div className="text-center space-y-1 border p-4 border-t-4 hover:border-primary group transition-all duration-300">
               <div>
-                <h3>Appointment</h3>
-                <h2>+ 01 1122 333 333</h2>
-                <p>appointment@info.com</p>
+                <FaCalendarPlus
+                  className=" mx-auto group-hover:text-primary transition-all duration-300"
+                  size={50}
+                />
+              </div>
+              <div className="pt-2">
+                <h3 className="text-2xl font-semibold">Appointment</h3>
+                <h2 className="text-base">+ 01 1122 333 333</h2>
+                <p className="text-base">appointment@info.com</p>
+              </div>
+            </div>
+            <div className="text-center space-y-1 border p-4 border-t-4 hover:border-primary group transition-all duration-300">
+              <div>
+                <FiPhoneCall
+                  className=" mx-auto group-hover:text-primary transition-all duration-300"
+                  size={50}
+                />
+              </div>
+              <div className="pt-2">
+                <h3 className="text-2xl font-semibold">Call Us</h3>
+                <h2 className="text-base">+ 01 1122 666 333</h2>
+                <p className="text-base">+ 01 1122 333 333 </p>
+              </div>
+            </div>
+
+            <div className="text-center space-y-1 border p-4 border-t-4 hover:border-primary group transition-all duration-300">
+              <div>
+                <FaEnvelopeOpen
+                  className=" mx-auto group-hover:text-primary transition-all duration-300"
+                  size={50}
+                />
+              </div>
+              <div className="pt-2">
+                <h3 className="text-2xl font-semibold">Email Us</h3>
+                <h2 className="text-base">sheba@info.com</h2>
+                <p className="text-base">sheba@official.com</p>
+              </div>
+            </div>
+            <div className="text-center space-y-1 border p-4 border-t-4 hover:border-primary group transition-all duration-300">
+              <div>
+                <FaLocationArrow
+                  className=" mx-auto group-hover:text-primary transition-all duration-300"
+                  size={50}
+                />
+              </div>
+              <div className="pt-2">
+                <h3 className="text-2xl font-semibold">Email Us</h3>
+                <h2 className="text-base">213 Lane, London United Kingdom</h2>
+                {/* <p className="text-base">sheba@official.com</p> */}
               </div>
             </div>
           </div>

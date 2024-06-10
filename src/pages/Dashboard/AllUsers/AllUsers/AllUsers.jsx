@@ -12,8 +12,9 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toastAlert from "../../../../utils/toastAlert";
 import DownloadUserInfo from "../DownloadUserInfo/DownloadUserInfo";
 import UserInfoModal from "../../../../components/UserInfoModal/UserInfoModal";
+import Loader from "../../../../components/Loader/Loader";
 const AllUsers = () => {
-  const [users, , refetch] = useGetAllUser();
+  const [users, isLoading, refetch] = useGetAllUser();
   const [bookings] = useGetAllBookings();
   const axiosSecure = useAxiosSecure();
   const [singleUserInfo, setSingleUserInfo] = useState({});
@@ -73,6 +74,8 @@ const AllUsers = () => {
     setUserEmail(email);
     openUserInfoModal();
   };
+
+  if (isLoading) return <Loader />;
   return (
     <div>
       <div className="mt-3 md:mt-6">
@@ -131,6 +134,7 @@ const AllUsers = () => {
                       <select
                         name=""
                         id=""
+                        disabled={user?.name === "Hammad Sadi" ? true : false}
                         className="py-[3px] px-2 focus:outline-none"
                         onChange={(e) => handleChangeRole(e, user?._id)}
                       >

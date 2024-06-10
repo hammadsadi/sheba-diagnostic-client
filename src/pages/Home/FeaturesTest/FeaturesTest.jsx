@@ -2,17 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import FeaturedBookTestItem from "../../../components/FeaturedBookTestItem/FeaturedBookTestItem";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import Loader from "../../../components/Loader/Loader";
 
 const FeaturesTest = () => {
   const axiosCommon = useAxiosCommon();
-  const { data: bookings = [] } = useQuery({
+  const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["all-bookings"],
     queryFn: async () => {
       const { data } = await axiosCommon.get("bookings");
       return data;
     },
   });
-
+  if (isLoading) return <Loader />;
   return (
     <div>
       <section className="mt-10 md:mt-20">
