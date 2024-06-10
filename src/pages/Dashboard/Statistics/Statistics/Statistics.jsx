@@ -17,8 +17,6 @@ const Statistics = () => {
   const [bookings] = useGetAllBookings();
   const [delivered] = useGetAllDelivered();
 
-  console.log(delivered);
-
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
       <div>

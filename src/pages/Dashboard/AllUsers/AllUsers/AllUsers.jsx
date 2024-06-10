@@ -208,13 +208,7 @@ const AllUsers = () => {
           <UserDetails singleUserInfo={singleUserInfo} />
         </MyModal>
         {/* My Modal For User Info Download */}
-        {/* <MyModal
-          isOpen={isOpenUserInfoModal}
-          close={closeUserInfoModal}
-          modalTitle="Download User Info"
-        >
-          <DownloadUserInfo userEmail={userEmail} userId={userId} />
-        </MyModal> */}
+
         <UserInfoModal
           isOpen={isOpenUserInfoModal}
           close={closeUserInfoModal}

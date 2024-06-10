@@ -18,8 +18,10 @@ const Login = () => {
       signIn(data?.email, data?.password)
         .then((res) => {
           if (res?.user) {
+            // navigate("/dashboard");
             toastAlert("Login Successful", "success");
             setLoading(false);
+            console.log(res.user);
             navigate("/");
           }
         })

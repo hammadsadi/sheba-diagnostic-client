@@ -4,11 +4,16 @@ import { MdCancel } from "react-icons/md";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import toastAlert from "../../../utils/toastAlert";
+import Loader from "../../../components/Loader/Loader";
 
 const UpCommingAppointments = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useAuth();
-  const { data: upcomingBookings, refetch } = useQuery({
+  const {
+    data: upcomingBookings,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["upcomingBookings"],
     enabled: !loading,
     queryFn: async () => {
@@ -30,6 +35,7 @@ const UpCommingAppointments = () => {
       toastAlert(error.message, "error");
     }
   };
+  if (isLoading) return <Loader />;
   return (
     <div>
       <div className="mt-3 md:mt-6">
@@ -45,7 +51,7 @@ const UpCommingAppointments = () => {
               </th>
 
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Name
+                Test Name
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 Test Price

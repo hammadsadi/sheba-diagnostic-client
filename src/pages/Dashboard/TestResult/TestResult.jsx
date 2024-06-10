@@ -2,11 +2,19 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../components/Loader/Loader";
+import { MdOutlineDownload } from "react-icons/md";
+import UserInfoModal from "../../../components/UserInfoModal/UserInfoModal";
+import { useState } from "react";
+import TestReportDownload from "./TestReportDownload/TestReportDownload";
 
 const TestResult = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useAuth();
-  const { data: testsResults, refetch } = useQuery({
+  let [isOpenUserReportInfoModal, setIsOpenUserReportInfoModal] =
+    useState(false);
+  const [reportInfo, setReportInfo] = useState({});
+  const { data: testsResults, isLoading } = useQuery({
     queryKey: ["testsResults"],
     enabled: !loading,
     queryFn: async () => {
@@ -14,39 +22,28 @@ const TestResult = () => {
       return data;
     },
   });
+
+  // Download User Info Modal
+  function openUserReportInfoModal() {
+    setIsOpenUserReportInfoModal(true);
+  }
+
+  function closeUserReportInfoModal() {
+    setIsOpenUserReportInfoModal(false);
+  }
+
+  // handleDownloadReportPdf
+  const handleDownloadReportPdf = (booking) => {
+    setReportInfo(booking);
+    openUserReportInfoModal();
+  };
+  if (isLoading) return <Loader />;
   return (
     <div>
       <div className="mt-3 md:mt-6">
         <SectionTitle heading="My Upcoming Appointments" />
       </div>
-      {/* <div className="overflow-x-auto">
-        <table className="table">
-         
-          <thead>
-            <tr>
-              <th></th>
-              <th>Test Name</th>
-              <th>Appointment Date</th>
-              <th>Appointment Time</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-           
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>
-                <button className="cursor-pointer flex justify-center items-center bg-primary text-white py-1 px-3 rounded-sm">
-                  <MdOutlineDownload /> <span>Download Report</span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
+
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y-2 divide-primary bg-white text-sm text-center">
           <thead className="ltr:text-left rtl:text-right">
@@ -99,9 +96,11 @@ const TestResult = () => {
                       </td>
 
                       <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex items-center gap-1 justify-center">
-                        <button className="cursor-pointer flex items-center">
-                          {" "}
-                          <span>Cancel</span>
+                        <button
+                          className="cursor-pointer flex justify-center text-sm items-center bg-primary text-white py-[1px] px-2 rounded-sm"
+                          onClick={() => handleDownloadReportPdf(booking)}
+                        >
+                          <MdOutlineDownload /> <span>Download Info</span>
                         </button>
                       </td>
                     </tr>
@@ -119,6 +118,15 @@ const TestResult = () => {
           </tbody>
         </table>
       </div>
+      {/* My Modal For User Info Download */}
+
+      <UserInfoModal
+        isOpen={isOpenUserReportInfoModal}
+        close={closeUserReportInfoModal}
+        modalTitle="Download Test Result"
+      >
+        <TestReportDownload reportInfo={reportInfo} />
+      </UserInfoModal>
     </div>
   );
 };
