@@ -22,7 +22,7 @@ const AboutUs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
           <div>
             <img
-              src="https://thumbs.dreamstime.com/b/hospital-building-modern-parking-lot-59693686.jpg"
+              src="https://iili.io/Jyg0Mqg.jpg"
               alt=""
               className="border-4 border-primary"
             />

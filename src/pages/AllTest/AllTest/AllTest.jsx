@@ -18,11 +18,11 @@ const AllTest = () => {
       return data;
     },
   });
-  // useEffect(() => {
-  //   axiosCommon.get("tests").then((res) => {
-  //     setTestList(res.data);
-  //   });
-  // }, [axiosCommon]);
+
+  const totalItemPerPage = 3;
+  const itemOfPerPage = Math.ceil(testList.length / totalItemPerPage);
+  const pages = [...Array(itemOfPerPage).keys()];
+  console.log(pages);
 
   // handleChangeTestdate
   const handleChangeTestdate = (e) => {
@@ -66,6 +66,18 @@ const AllTest = () => {
                 <TestItem key={item._id} item={item} />
               ))}
           </div>
+        </div>
+        <div>
+          <ol className="flex justify-center gap-1 text-xs font-medium">
+            {pages?.map((page) => (
+              <li
+                className="block size-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
+                key={page}
+              >
+                {page}
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </div>
