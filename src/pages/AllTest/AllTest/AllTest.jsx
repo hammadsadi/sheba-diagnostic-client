@@ -67,18 +67,6 @@ const AllTest = () => {
               ))}
           </div>
         </div>
-        <div>
-          <ol className="flex justify-center gap-1 text-xs font-medium">
-            {pages?.map((page) => (
-              <li
-                className="block size-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
-                key={page}
-              >
-                {page}
-              </li>
-            ))}
-          </ol>
-        </div>
       </section>
     </div>
   );
