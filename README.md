@@ -2,7 +2,7 @@
 
 This is robust Diagnostic Center Management System, a full-stack web
 application that effectively manages appointments, patient records, test
-results, and administrative tasks for a diagnostic center.
+results, and administrative for a diagnostic center.
 
 ## Project Features
 
