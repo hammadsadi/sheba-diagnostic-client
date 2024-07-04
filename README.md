@@ -4,12 +4,6 @@ This is robust Diagnostic Center Management System, a full-stack web
 application that effectively manages appointments, patient records, test
 results, and administrative tasks for a diagnostic center.
 
-## Project Features
-
-- User Cannot add Query and Recommendation without Login
-- Popular Queries by Users Recommendations
-- Users can update/Delete his own Query
-
 ## Website Features
 
 - Test / Service Booking System
@@ -31,6 +25,9 @@ Click here for the Live Site: [https://diagnostic-management-312cf.web.app](http
 - React Hook Form
 - Recharts
 - Swiper
+- Node js
+- Express JS
+- MongoDB
 - Firebase
 
 ## Project Clone and Run Step
